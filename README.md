@@ -2,7 +2,7 @@
 Flask学習
 
 ##### 環境設定(Python3+Ubuntu)(インストール）  
-```YAML
+```Text
 $ mkdir projectname  
 $ cd projectname  
 $ python3 -m vent vent  
