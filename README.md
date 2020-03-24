@@ -3,7 +3,7 @@ Flask学習
 
 #環境設定(Python3+Ubuntu)
 
-` mkdir projectname
+`$ mkdir projectname`  
  cd projectname
  python3 -m vent vent
 
