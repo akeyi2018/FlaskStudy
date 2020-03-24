@@ -13,7 +13,6 @@ $ . venv/bin/activate
 ```YAML
 $ cd projectname   
 $ . venv/bin/activate
-(venv) $ export FLASK_APP=hello.py
-(venv) $ flask run
+(venv) $ python hello.py
 ```
 
