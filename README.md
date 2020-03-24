@@ -3,7 +3,7 @@ Flask学習
 
 #環境設定(Python3+Ubuntu)(初回）  
 
-```:バーチャル環境設定
+```Linux Command:バーチャル環境設定
 
 
 `$ mkdir projectname`  
