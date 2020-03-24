@@ -1,7 +1,7 @@
 # FlaskStudy
 Flask学習
 
-#環境設定(Python3+Ubuntu)(インストール）  
+###環境設定(Python3+Ubuntu)(インストール）  
 ```
 $ mkdir projectname  
 $ cd projectname  
@@ -11,7 +11,7 @@ $ . venv/bin/activate
 (venv) $ export FLASK_APP=target.py
 (venv) $ flask run
 ```  
-#開発手順  
+###開発手順  
 ```
 $ cd projectname   
 $ . venv/bin/activate
