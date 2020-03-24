@@ -31,3 +31,6 @@ def hello():
 def show_user_profile(username):
     #return 'user: %s' % escape(username)
     return '{}\'s profile'.format(escape(username))
+
+if __name__ == "__main__":
+    app.run(debug=True)
