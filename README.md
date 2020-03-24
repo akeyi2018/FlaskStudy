@@ -16,3 +16,5 @@ $ . venv/bin/activate
 (venv) $ python hello.py
 ```
 
+##### 参考文献  
+https://qiita.com/bookun/items/7ae5de21307d101b4759
