@@ -1,7 +1,7 @@
 # FlaskStudy
 Flask学習
 
-#####環境設定(Python3+Ubuntu)(インストール）  
+##### 環境設定(Python3+Ubuntu)(インストール）  
 ```
 $ mkdir projectname  
 $ cd projectname  
@@ -9,7 +9,7 @@ $ python3 -m vent vent
 $ . venv/bin/activate
 (venv) $ pip install Flask
 ```  
-#####開発手順  
+##### 開発手順  
 ```
 $ cd projectname   
 $ . venv/bin/activate
