@@ -16,5 +16,10 @@ $ . venv/bin/activate
 (venv) $ python hello.py
 ```
 
+##### グラフ表示を追加  
+```Text
+(venv) $ python DictTest.py
+```
+
 ##### 参考文献  
 https://qiita.com/bookun/items/7ae5de21307d101b4759
