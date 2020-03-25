@@ -18,7 +18,7 @@ $ . venv/bin/activate
 
 ##### グラフ表示(Chat.js使用)を追加  
 ```Text
-(venv) $ python DictTest.py
+(venv) $ python Showchart.py
 ```
 
 ##### 参考文献  
