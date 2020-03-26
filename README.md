@@ -23,7 +23,7 @@ $ . venv/bin/activate
 
 ##### 天気予報スクレイピングを追加  
 ```Text
-(venv) $ python 
+(venv) $ python weather.py
 ```
 
 ##### 参考文献  
