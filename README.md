@@ -21,5 +21,10 @@ $ . venv/bin/activate
 (venv) $ python Showchart.py
 ```
 
+##### 天気予報スクレイピングを追加  
+```Text
+(venv) $ python 
+```
+
 ##### 参考文献  
 https://qiita.com/bookun/items/7ae5de21307d101b4759
