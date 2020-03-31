@@ -14,7 +14,7 @@
        <p class="text-primary">.text-primary</p>
        <p class="text-info">.text-info</p>
         <h1 class="text-muted">Sample Page</h1>
-        <h4>グラフ</h4>
+        <h4>天気予報</h4>
         <canvas id="myLineChart"></canvas>
 　　　　　　　　<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
         <script>
@@ -48,7 +48,7 @@
     options: {
       title: {
         display: true,
-        text: '気温（3月25日~3月30日）'
+        text: "{{mes}}"
       },
       scales: {
         yAxes: [{
