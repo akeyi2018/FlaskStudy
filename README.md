@@ -21,9 +21,14 @@ $ . venv/bin/activate
 (venv) $ python Showchart.py
 ```
 
-##### 天気予報スクレイピングを追加  
+##### 天気予報(3日間)スクレイピングを追加  
 ```Text
 (venv) $ python weather.py
+```
+
+##### 天気予報(週間)スクレイピングを追加  
+```Text
+(venv) $ python ShowWeekWeather.py
 ```
 
 ##### 参考文献  
