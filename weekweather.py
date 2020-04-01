@@ -23,17 +23,18 @@ class Weather:
         weather = []
         daylist = []
         weeklist = []
-        info = self.weatherinfo[0:7]
+        info = []
 
         for daytemp in self.days:
             daytemp = daytemp.text
 
             if self.hiduke not in daytemp:
-                daylist.append(daytemp[:-1])
-                weeklist.append(daytemp[-1])
+                daylist.append(daytemp[:-1] + '(' + daytemp[-1] + ')')
 
-        #for infotemp in self.weatherinfo:
-        #    info.append(infotemp.text)
+        targetInfo = self.weatherinfo[0:7]
+        for infotemp in targetInfo:
+            infotemp = infotemp.text
+            info.append(infotemp.replace('\n',''))
 
         maxtemplist = []
         for maxtemp in self.max_temp:
@@ -66,7 +67,7 @@ class Weather:
                 mintemplist.append(mintemp)
 
         weather.append(self.title)
-        #weather.append(info)
+        weather.append(info)
         weather.append(daylist)
         weather.append(maxtemplist)
         weather.append(mintemplist)
