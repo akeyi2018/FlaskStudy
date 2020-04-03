@@ -3,14 +3,17 @@ import re
 import urllib3
 from bs4 import BeautifulSoup
 
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+
 class Weather:
 
-    def __init__(self):
+    def __init__(self, prefectureLink):
 
-        urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+        self.prefectureLink = prefectureLink
 
-        res = requests.get("https://www.jma.go.jp/jp/week/319.html", verify=False)
+        res = requests.get("https://www.jma.go.jp/jp/week/" + self.prefectureLink, verify=False)
         soup = BeautifulSoup(res.text,"html.parser")
+
         self.title = soup.find("caption").text
         self.days = soup.find("table", {"id": "infotablefont"}).find_all("tr")[0].find_all("th")
         self.weatherinfo = soup.find("table", {"id": "infotablefont"}).find_all("tr")[1].find_all("td")
@@ -47,7 +50,7 @@ class Weather:
                 mintemp = re.sub('{.*?}', '', mintemp)
 
                 if self.hiduke[3] in mintemp:
-                    mintemp = None
+                    mintemp = ""
                 else:
                     mintemp = int(mintemp)
 
@@ -61,7 +64,20 @@ class Weather:
 
         return weather
 
+class prefecture:
+
+    def __init__(self):
+        #各府県のデータを取得する
+        res1 = requests.get("https://www.jma.go.jp/jp/week/", verify=False)
+        self.soup1 = BeautifulSoup(res1.text, "html.parser")
+
+    def getPrefecture(self):
+        return [[pre.get("value"), pre.text] for pre in self.soup1.find_all("option")[1:]]
+
 if __name__ == "__main__":
 
-    wt = Weather()
-    print(wt.getInfo()[2])
+    wt = prefecture()
+    pre = wt.getPrefecture()[20][0]
+    print(pre)
+    wk = Weather(pre)
+    print(wk.getInfo()[0])
