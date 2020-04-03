@@ -31,7 +31,7 @@ $ . venv/bin/activate
 (venv) $ python weather.py
 ```
 
-##### 天気予報(週間)スクレイピングを追加  
+##### 天気予報(週間)（地域選択機能）を追加  
 ```Text
 (venv) $ python ShowWeekWeather.py
 ```
