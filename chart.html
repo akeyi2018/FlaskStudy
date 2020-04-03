@@ -11,48 +11,62 @@
   <body>
 
     <div class="container">
+
         <center><h2 class="text-muted">天気予報</h2></center>
+        <form action = "/showweekweather" method="POST">
+        <select name="pref">
+          {% for key, value in preflink.items() %}
+            {% if selectedval == key %}
+               <option value = "{{key}}" selected>{{value}}</option>
+            {% else %}
+               <option value = "{{key}}">{{value}}</option>
+            {% endif %}
+          {% endfor %}
+        </select>
+        <input name = "linkPref" type= "submit"></input>
+        </form>
+
         <canvas id="myLineChart"></canvas>
-　　　　　　　　<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
         <script>
 
         var ctx = document.getElementById("myLineChart");
-         var myLineChart = new Chart(ctx, {
+        var myLineChart = new Chart(ctx, {
         type: 'line',
         data: {
-        labels: [{% for dat in message %}
+            labels: [{% for dat in message %}
                  "{{ dat }}",
                  {% endfor %}],
-        datasets: [
-        {
-          label: '最高気温(度）',
-          data: [{% for tp in temp %}
+            datasets: [
+            {
+              spanGaps: true,
+              label: '最高気温(度）',
+              data: [{% for tp in temp %}
                  {{tp}},
                  {% endfor %}],
-          borderColor: "rgba(255,0,0,1)",
-          backgroundColor: "rgba(0,0,0,0)"
-        },
-        {
-          label: '最低気温(度）',
-          data: [{% for tp in lowtemp %}
+              borderColor: "rgba(255,0,0,1)",
+              backgroundColor: "rgba(0,0,0,0)"
+            },
+           {
+            label: '最低気温(度）',
+            data: [{% for tp in lowtemp %}
                  {{tp}},
                  {% endfor %}],
-          borderColor: "rgba(0,0,255,1)",
-          backgroundColor: "rgba(0,0,0,0)"
-        }
-      ],
-    },
-    options: {
-      title: {
-        display: true,
-        text: "{{mes}}"
-      },
-      scales: {
-        yAxes: [{
+             borderColor: "rgba(0,0,255,1)",
+             backgroundColor: "rgba(0,0,0,0)"
+             }
+            ],
+           },
+          options: {
+          title: {
+          display: true,
+          text: "{{mes}}"
+          },
+          scales: {
+          yAxes: [{
           ticks: {
-            suggestedMax: 40,
             suggestedMin: 0,
-            stepSize: 10,
+            stepSize: 5,
             callback: function(value, index, values){
               return  value +  '度'
             }
