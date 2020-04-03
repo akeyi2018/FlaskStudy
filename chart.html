@@ -11,10 +11,9 @@
   <body>
 
     <div class="container">
-
-        <center><h2 class="text-muted">天気予報</h2></center>
+        <center><h3 class="text-muted">天気予報</h3></center>
         <form action = "/showweekweather" method="POST">
-        <select name="pref">
+        <select class="text-muted" name="pref" style="font-size:14px;">
           {% for key, value in preflink.items() %}
             {% if selectedval == key %}
                <option value = "{{key}}" selected>{{value}}</option>
@@ -25,7 +24,22 @@
         </select>
         <input name = "linkPref" type= "submit"></input>
         </form>
-
+        <br>
+        <center><h4 class="text-muted">{{mes}}</h4>
+        <table border="2" width="80%" style="font-size: 12pt; table-layout: auto;">
+        <tr>
+        <td align="center" class="text-muted">日付</th>
+        {% for dat in message %}
+        <td align="center" class="text-muted">{{dat}}</th>
+        {% endfor %}
+        </tr>
+        <tr>
+        <td align="center" class="text-muted">予報内容</td>
+        {% for winfo in weatherinfo %}
+        <td align="center" class="text-muted">{{winfo}}</td>
+        {% endfor %}
+        </tr>
+        </table></center>
         <canvas id="myLineChart"></canvas>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
         <script>
@@ -60,7 +74,6 @@
           options: {
           title: {
           display: true,
-          text: "{{mes}}"
           },
           scales: {
           yAxes: [{
