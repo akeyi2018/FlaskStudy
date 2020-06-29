@@ -5,7 +5,7 @@ Flask学習
 ```Text
 $ mkdir projectname  
 $ cd projectname  
-$ python3 -m vent vent  
+$ python3 -m venv venv  
 $ . venv/bin/activate
 (venv) $ pip install Flask
 ```  
