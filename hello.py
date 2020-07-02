@@ -33,4 +33,4 @@ def show_user_profile(username):
     return '{}\'s profile'.format(escape(username))
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0')
