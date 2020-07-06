@@ -5,25 +5,22 @@ app = Flask(__name__)
 def index():
     return 'Index Page'
 
-@app.route('/login')
-def login():
-    return show_the_login_form()
-
-@app.route('/res', methods=['GET', 'POST'])
-def do_the_login():
+@app.route('/response', methods=['GET', 'POST'])
+def show_post_result():
     return """
-    Result:
+    POST実行結果:
     <h1>{}</h1>
-    """.format(str(request.form["num"]))
+    """.format(str(request.form["name"]))
 
-def show_the_login_form():
+@app.route('/showpostpage')
+def show_the_post_form():
     return """
-    TEST POST
-    <form action= "/res" method="POST">
-    <input name = "num"></input>
+    文字列を入力し、Enterキーを押してください。
+    <form action= "/response" method="POST">
+    <input name = "name"></input>
     </form>"""
 
-@app.route('/hello/')
+@app.route('/hello')
 def hello():
     return 'Hello, World!'
 
