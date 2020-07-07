@@ -1,7 +1,7 @@
 # FlaskStudy
 Flask学習
 
-##### 環境設定(Python3+Ubuntu)(インストール）  
+##### 環境設定(Python3+debian)(インストール）  
 ```Text
 $ mkdir projectname  
 $ cd projectname  
@@ -16,19 +16,10 @@ $ . venv/bin/activate
 (venv) $ git clone http://github.com/akeyi2018/FlaskStudy
 (venv) $ cd FlaskStudy
 ```  
-##### グラフ表示(Chat.js使用)を追加  
-```Text
-(venv) $ python Showchart.py
-```
 
 ##### GET/POSTテスト    
 ```Text
 (venv) $ python hello.py
-```
-
-##### 天気予報(3日間)スクレイピングを追加  
-```Text
-(venv) $ python weather.py
 ```
 
 ##### 天気予報(週間)（地域選択機能）を追加  
