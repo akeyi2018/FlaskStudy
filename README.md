@@ -27,7 +27,7 @@ $ . venv/bin/activate
 (venv) $ python ShowWeekWeather.py
 ```
 
-![weather](https://github.com/akeyi2018/FlaskStudy/weather.jpg)
+![weather](https://github.com/akeyi2018/FlaskStudy/blob/master/weather.JPG)
 
 ##### 参考文献  
 https://qiita.com/bookun/items/7ae5de21307d101b4759
