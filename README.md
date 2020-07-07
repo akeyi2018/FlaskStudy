@@ -22,11 +22,15 @@ $ . venv/bin/activate
 ```Text
 (venv) $ python hello.py
 ```
+##### ブラウザから以下のURLを入力して動作確認  
+http://ip_address/showpostpage  
 
 ##### 天気予報(週間)（地域選択機能）を追加  
 ```Text
 (venv) $ python ShowWeekWeather.py
 ```
+##### ブラウザから以下のURLを入力して動作確認  
+http://ip_address/showweekweather
 
 ##### 表示例
 <img src="https://github.com/akeyi2018/FlaskStudy/blob/master/weather.JPG" width="600">
