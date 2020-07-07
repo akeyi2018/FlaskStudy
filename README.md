@@ -27,6 +27,7 @@ $ . venv/bin/activate
 (venv) $ python ShowWeekWeather.py
 ```
 
+##### 表示例
 <img src="https://github.com/akeyi2018/FlaskStudy/blob/master/weather.JPG" width="600">
 
 ##### 参考文献  
