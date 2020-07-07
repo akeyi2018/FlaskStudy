@@ -13,17 +13,17 @@ $ . venv/bin/activate
 ```YAML
 $ cd projectname   
 $ . venv/bin/activate
-(venv) $ python hello.py
+(venv) $ git clone http://github.com/akeyi2018/FlaskStudy
+(venv) $ cd FlaskStudy
+```  
+##### グラフ表示(Chat.js使用)を追加  
+```Text
+(venv) $ python Showchart.py
 ```
 
 ##### GET/POSTテスト    
 ```Text
 (venv) $ python hello.py
-```
-
-##### グラフ表示(Chat.js使用)を追加  
-```Text
-(venv) $ python Showchart.py
 ```
 
 ##### 天気予報(3日間)スクレイピングを追加  
