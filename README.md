@@ -15,6 +15,7 @@ $ cd projectname
 $ . venv/bin/activate
 (venv) $ git clone http://github.com/akeyi2018/FlaskStudy
 (venv) $ cd FlaskStudy
+(venv) $ pip install bs4
 ```  
 
 ##### GET/POSTテスト    
