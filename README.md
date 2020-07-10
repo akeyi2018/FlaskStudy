@@ -35,5 +35,9 @@ http://ip_address/showweekweather
 ##### 表示例
 <img src="https://github.com/akeyi2018/FlaskStudy/blob/master/weather.JPG" width="600">
 
+##### 参考動画  
+- [4分半で分かるFlask環境構築](https://youtu.be/M_U0AC_oBXQ)
+- [0.0.0.0と127.0.0.1とlocalhostの違いについて](https://youtu.be/yL8zces3hKg)
+
 ##### 参考文献  
 https://qiita.com/bookun/items/7ae5de21307d101b4759
