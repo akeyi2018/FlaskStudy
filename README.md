@@ -37,8 +37,11 @@ http://ip_address/showweekweather
 
 ##### マルチプロセスサンプル
 ```text
-(venv) $ python 
+(venv) $ python multiprocess_flask.py
 ```
+##### ブラウザから以下のURLを入力して動作確認 
+http://ip_address/ でプロセス開始
+http://ip_address/kill でプロセスを終了させる
 
 ##### 参考動画  
 - [4分半で分かるFlask環境構築](https://youtu.be/M_U0AC_oBXQ)
