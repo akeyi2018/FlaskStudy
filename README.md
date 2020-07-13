@@ -35,6 +35,11 @@ http://ip_address/showweekweather
 ##### 表示例
 <img src="https://github.com/akeyi2018/FlaskStudy/blob/master/weather.JPG" width="600">
 
+##### マルチプロセスサンプル
+```text
+(venv) $ python 
+```
+
 ##### 参考動画  
 - [4分半で分かるFlask環境構築](https://youtu.be/M_U0AC_oBXQ)
 - [0.0.0.0と127.0.0.1とlocalhostの違いについて](https://youtu.be/yL8zces3hKg)
