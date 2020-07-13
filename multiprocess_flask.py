@@ -12,7 +12,6 @@ def testFun():
 
 @app.route('/kill')
 def killproc():
-
     backProc.terminate()
     return "Killed Porcess "
 
@@ -24,5 +23,4 @@ def root():
     return "Started a background process"
 
 if __name__ == '__main__':
-
     app.run(debug=True, host='0.0.0.0')
