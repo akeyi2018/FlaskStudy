@@ -43,6 +43,11 @@ http://ip_address/showweekweather
 http://ip_address/ でプロセス開始   
 http://ip_address/kill でプロセスを終了させる
 
+##### json処理サンプル  
+```text
+(venv) $ python json_flask.py
+```
+
 ##### 参考動画  
 - [4分半で分かるFlask環境構築](https://youtu.be/M_U0AC_oBXQ)
 - [0.0.0.0と127.0.0.1とlocalhostの違いについて](https://youtu.be/yL8zces3hKg)
