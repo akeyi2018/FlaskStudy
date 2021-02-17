@@ -1,0 +1,24 @@
+{% if select_info.status > 0 %}
+    <hr>
+    <button id="stopButton" onclick="stop()">撮影停止</button>
+    <br>
+    <button id="statusButton" onclick="changeProgress()">状態確認</button>
+    <br>
+    <label for="interval">インターバル撮影進捗: </label>
+    <progress id="interval" value="0" max="10"></progress>
+    <h5 id="text_status">インターバル撮影実行中</h5><br>
+    <p>
+        回転角度：{{select_info.angle}}°<br>
+        撮影時間：{{select_info.time}}分<br>
+        回転方向：
+        {% if select_info.direction == 1 %}
+        時計回り
+        {% else %}
+        反時計回り
+        {% endif %}
+        <br>
+    </p>
+{% else %}
+    <p>インターバル撮影待機中</p>
+{% endif %} 
+    
