@@ -1,0 +1,32 @@
+<form action="/set_interval_info" method="POST">
+    <p>角度を選択してください。<br>
+    {% for key, value in input_angle.items() %}
+        {% if select_info.angle == key %}
+            <input type="radio" name='angle' value = "{{key}}" checked>{{value}}</input>
+        {% else %}
+            <input type="radio" name='angle' value = "{{key}}" >{{value}}</input>
+        {% endif %}
+        {% endfor %}
+    </p>
+    <br>
+    <p>時間を選択してください。<br>
+        {% for key, value in input_time.items() %}
+            {% if select_info.time == key %}
+              <input type="radio" name='time' value = "{{key}}" checked>{{value}}</input>
+            {% else %}
+              <input type="radio" name='time' value = "{{key}}" >{{value}}</input>
+            {% endif %}
+        {% endfor %}
+        </p>
+    <p>回転方向<br>
+        {% if select_info.direction == 1 %}
+            <input type="radio" name='direction' value = "1" checked>時計回り</input>
+            <input type="radio" name='direction' value = "-1" >反時計回り</input>
+        {% else %}
+            <input type="radio" name='direction' value = "1" >時計回り</input>
+            <input type="radio" name='direction' value = "-1" checked>反時計回り</input>
+        {% endif %}
+    </p>
+    <br>
+    <button type="submit" name="button" value = "start">撮影開始</button>
+   </form>
