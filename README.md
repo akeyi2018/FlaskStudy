@@ -33,7 +33,7 @@ http://ip_address/showpostpage
 http://ip_address/showweekweather
 
 ##### 表示例
-<img src="https://github.com/akeyi2018/FlaskStudy/blob/master/weather.JPG" width="600">
+<img src="https://github.com/akeyi2018/FlaskStudy/blob/master/weather/weather.JPG width="600">
 
 ##### マルチプロセスサンプル
 ```text
