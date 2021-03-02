@@ -7,4 +7,7 @@ trigger.on()
 sleep (1.0)
 trigger.off()
 sleep (1.0)
+trigger.on()
+sleep(1.0)
 trigger.off()
+
