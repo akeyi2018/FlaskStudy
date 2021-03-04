@@ -3,11 +3,12 @@ from time import sleep
 
 trigger = LED(4)
 
+sleep(3)
 trigger.on()
-sleep (1.0)
+sleep (3.0)
 trigger.off()
-sleep (1.0)
+sleep (3.0)
 trigger.on()
-sleep(1.0)
+sleep(3.0)
 trigger.off()
 
