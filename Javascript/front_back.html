@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja">
+ 
+<head>
+  <meta charset="utf-8">
+  <title>mebeeサンプル</title>
+</head>
+ 
+<script>
+ 
+  window.onload = () => {
+    var $front_elem = document.getElementById("front");
+    $front_elem.onmousedown = () => { 
+        inter_id = setInterval(
+            function(){
+                $front_elem.innerHTML = 'MOVE';
+            }, 20); 
+    };
+
+    $front_elem.onmouseup = () => {
+        clearInterval(inter_id);
+        $front_elem.innerHTML = '前進';
+    };
+    var $back_elem = document.getElementById("back");
+    $back_elem.onmousedown = () => { 
+        inter_id_2 = setInterval(
+            function(){
+                $back_elem.innerHTML = 'MOVE';
+            }, 20); 
+    };
+
+    $back_elem.onmouseup = () => {
+        clearInterval(inter_id_2);
+        $back_elem.innerHTML = '後退';
+    };
+  }
+ 
+</script>
+ 
+<body>
+  <div id="main" class="container mx-auto my-56 w-56 px-4">
+ 
+    <div class="flex justify-center">
+      <button id="front" >前進</button>
+      <button id="back" >後退</button>
+    </div>
+ 
+  </div>
+</body>
+ 
+</html>
