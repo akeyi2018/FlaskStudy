@@ -1,15 +1,34 @@
 from gpiozero import Robot
 from time import sleep
-robot = Robot(left=(6,13), right=(19,26))
+import json, os
 
-robot.forward()
-sleep(3)
+class robot_controller:
+    def __init__(self, path):
+        self.path = path
+        self.robot_info = os.path.join(self.path, 'robot_info.json')
+        self.config = os.path.join(self.path, 'config.json')
+    
+    def get_config(self):
+        with open(self.config,  mode='r', encoding='utf-8') as json_file:
+            return json.load(json_file)
 
-robot.backward()
-sleep(3)
+class MoveBody:
+    def __init__(self, LEFT_PIN_1, LEFT_PIN_2, RIGHT_PIN_1, RIGHT_PIN_2):
+        self.robot = Robot(left=(LEFT_PIN_1,LEFT_PIN_2), right=(RIGHT_PIN_1, RIGHT_PIN_2))
 
-robot.left()
-sleep(3)
+    def run(self, direction):
+        actions = {
+            0 : self.robot.stop,
+            1 : self.robot.forward,
+            2 : self.robot.backward,
+            3 : self.robot.left,
+            4 : self.robot.right,
+        }
+        actions[direction]()
+        sleep(0.5)
 
-robot.right()
-sleep(3)
+if __name__ == '__main__':
+    movebody = MoveBody(6,13,19,26)
+    movebody.run(1)
+    movebody.run(2)
+    
