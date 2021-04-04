@@ -9,4 +9,4 @@ for pin in leds:
 led = LED(5)
 
 led.blink()
-sleep(3)
+sleep(4)
