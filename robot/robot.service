@@ -1,0 +1,10 @@
+[Unit]
+Description=intial gpio for robot
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 ~/FlaskStudy/robot/initial.py
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
