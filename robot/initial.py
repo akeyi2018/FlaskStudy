@@ -1,4 +1,5 @@
 from gpiozero import LED
+from time import sleep
 
 leds = [6,13,19,26]
 
@@ -8,3 +9,4 @@ for pin in leds:
 led = LED(5)
 
 led.blink()
+sleep(3)
