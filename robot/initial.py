@@ -6,4 +6,5 @@ for pin in leds:
     re = LED(pin)
 
 led = LED(5)
-led.off()
+
+led.blink()
