@@ -1,20 +1,10 @@
-<!DOCTYPE html>
-<html lang="ja">
- 
-<head>
-  <meta charset="utf-8">
-  <title>mebeeサンプル</title>
-</head>
- 
-<script>
- 
-  window.onload = () => {
+window.onload = () => {
     var $front_elem = document.getElementById("front");
     $front_elem.onmousedown = () => { 
         inter_id = setInterval(
             function(){
                 $front_elem.innerHTML = 'MOVE';
-                output_info('move to front');
+                output_info('move to front', 1);
             }, 20); 
     };
 
@@ -28,7 +18,7 @@
         inter_id_2 = setInterval(
             function(){
                 $back_elem.innerHTML = 'MOVE';
-                output_info('move to back');
+                output_info('move to back', 2);
             }, 20); 
     };
 
@@ -37,22 +27,22 @@
         $back_elem.innerHTML = '後退';
         output_info('stop to move back');
     };
-  }
+}
  
-  function output_info($text_info) {
-    $info_elem = document.getElementById("info");
-    $info_elem.innerHTML = $text_info;
-  }
-  
-
-</script>
- 
-<body>
-  <div id="main">
-      <button id="front" >前進</button>
-      <button id="back" >後退</button>
-      <p id="info" >info</p>
-  </div>
-</body>
- 
-</html>
+function output_info($text_info, direction) {
+    var res = JSON.stringify({"d": direction});
+    $.ajax(
+      {
+        type:'POST',
+        url: '/move',
+        data: res,
+        contentType: 'application/json'
+      }
+    );
+    // $.post("/move", $text_info, function(res, status, xhr){
+    //     if (status == "success") {
+    //       $info_elem = document.getElementById("info");
+    //       $info_elem.innerHTML = $text_info + direction;
+    //     }
+    // });
+}
