@@ -1,0 +1,16 @@
+{
+    "settings":
+    {
+        "direction": 0,
+        "moving_time": 20,
+        "stutus": 0,
+        "running": 0
+    },
+    "Robot":
+    {
+        "left_forward" : 6,
+        "left_backward" : 13,
+        "right_forward" : 19,
+        "right_backward" : 26
+    }
+}
