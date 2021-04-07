@@ -6,11 +6,5 @@
         "stutus": 0,
         "running": 0
     },
-    "Robot":
-    {
-        "left_forward" : 6,
-        "left_backward" : 13,
-        "right_forward" : 19,
-        "right_backward" : 26
-    }
+    "Robot": [6,13,19,26]
 }
