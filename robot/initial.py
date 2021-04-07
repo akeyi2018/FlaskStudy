@@ -1,12 +1,17 @@
-from gpiozero import LED
+# from gpiozero import LED
 from time import sleep
+from controller import robot_controller
+import os
 
-leds = [6,13,19,26]
+control = robot_controller(os.path.dirname(os.path.realpath(__file__)))
+config = control.get_config()
 
-for pin in leds:
-    re = LED(pin)
+print(control.get_config()['Robot'])
 
-led = LED(5)
+# for pin in config['Robot']:
+#     re = LED(pin)
 
-led.blink()
-sleep(4)
+# led = LED(5)
+
+# led.blink()
+# sleep(1)
