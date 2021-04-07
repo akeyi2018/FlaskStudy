@@ -13,8 +13,8 @@ class robot_controller:
             return json.load(json_file)
 
 class MoveBody:
-    def __init__(self, LEFT_PIN_1, LEFT_PIN_2, RIGHT_PIN_1, RIGHT_PIN_2):
-        self.robot = Robot(left=(LEFT_PIN_1,LEFT_PIN_2), right=(RIGHT_PIN_1, RIGHT_PIN_2))
+    def __init__(self, pins):
+        self.robot = Robot(left=(pins[0],pins[1]), right=(pins[2], pins[3]))
 
     def run(self, direction):
         actions = {
@@ -28,7 +28,8 @@ class MoveBody:
         sleep(0.5)
 
 if __name__ == '__main__':
-    movebody = MoveBody(6,13,19,26)
+    control = robot_controller(os.path.dirname(os.path.realpath(__file__)))
+    movebody = MoveBody(control.get_config()['Robot'])
     movebody.run(1)
     movebody.run(2)
     
