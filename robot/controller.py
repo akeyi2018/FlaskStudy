@@ -1,4 +1,4 @@
-from gpiozero import Robot
+import RPi.GPIO as GPIO
 from time import sleep
 import json, os
 
@@ -24,18 +24,23 @@ class robot_controller:
             pass
 class MoveBody:
     def __init__(self, pins):
-        self.robot = Robot(left=(pins[0],pins[1]), right=(pins[2], pins[3]))
+        # self.robot = Robot(left=(pins[0],pins[1]), right=(pins[2], pins[3]))
+        GPIO.setwarnings(False)
+        GPIO.setmode(GPIO.BCM)
+        self.pinList = pins
 
     def run(self, direction):
-        actions = {
-            0 : self.robot.stop,
-            1 : self.robot.forward,
-            2 : self.robot.backward,
-            3 : self.robot.left,
-            4 : self.robot.right,
+         actions = {
+            0 : [0,0,0,0],
+            1 : [1,0,1,0],
+            2 : [0,1,0,1],
+            3 : [0,1,1,0],
+            4 : [1,0,0,1],
         }
-        actions[direction]()
-        sleep(1)
+        for pin, val in zip(self.pinList, actions[direction])
+            GPIO.output(pin, val)
+        sleep(1.0)
+        GPIO.cleanup()
 
 if __name__ == '__main__':
     control = robot_controller(os.path.dirname(os.path.realpath(__file__)))
