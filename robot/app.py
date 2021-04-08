@@ -17,6 +17,7 @@ def index():
 def move():
     # res = request.json['d'] if len(request.json) > 0 else 0
     if len(request.json) > 0 :
+        print(res)
         move_body(int(request.json['d']))
         return '200'
     else:
