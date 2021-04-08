@@ -29,7 +29,7 @@ class MoveBody:
         self.pinList = pins
         GPIO.setup(self.pinList, GPIO.OUT)
 
-    def run(self, direction):
+    def run(self, direction, tm):
         actions = {
             0 : [0,0,0,0],
             1 : [1,0,1,0],
@@ -39,14 +39,13 @@ class MoveBody:
         }
         for pin, val in zip(self.pinList, actions[direction]):
             GPIO.output(pin, val)
-        sleep(1.0)
+        sleep(tm)
         # GPIO.cleanup()
-
 
 if __name__ == '__main__':
     control = robot_controller(os.path.dirname(os.path.realpath(__file__)))
     movebody = MoveBody(control.get_config()['Robot'])
-    movebody.run(1)
-    movebody.run(2)
-    movebody.run(0)
+    movebody.run(1, 1)
+    movebody.run(2, 1)
+    movebody.run(0,0.001)
     
