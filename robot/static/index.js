@@ -1,8 +1,9 @@
 window.onload = () => {
     var $front_elem = document.getElementById("front");
-    $front_elem.onmousedown = () => { 
+    $front_elem.onclick = () => { 
         $front_elem.innerHTML = 'MOVE';
         output_info('move to front', 1);
+        $front_elem.onclick = null;
     };
 
     // $front_elem.onmouseup = () => {
@@ -10,9 +11,10 @@ window.onload = () => {
     //     output_info('stop to move front!', 0);
     // };
     var $back_elem = document.getElementById("back");
-    $back_elem.onmousedown = () => { 
+    $back_elem.onclick = () => { 
         $back_elem.innerHTML = 'MOVE';
         output_info('move to back', 2);
+        $back_elem.onclick = null;
     };
 
     // $back_elem.onmouseup = () => {
@@ -23,6 +25,7 @@ window.onload = () => {
     $left_elem.onmousedown = () => { 
         $left_elem.innerHTML = 'MOVE';
         output_info('move to left', 3);
+        $left_elem.onmousedown = null;
     };
 
     // $left_elem.onmouseup = () => {
