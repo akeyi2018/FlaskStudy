@@ -42,9 +42,11 @@ class MoveBody:
         sleep(1.0)
         # GPIO.cleanup()
 
+
 if __name__ == '__main__':
     control = robot_controller(os.path.dirname(os.path.realpath(__file__)))
     movebody = MoveBody(control.get_config()['Robot'])
     movebody.run(1)
     movebody.run(2)
+    movebody.run(0)
     
