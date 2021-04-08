@@ -19,6 +19,26 @@ window.onload = () => {
         $back_elem.innerHTML = '後退';
         output_info('stop to move back', 0);
     };
+    var $left_elem = document.getElementById("left");
+    $left_elem.onmousedown = () => { 
+        $left_elem.innerHTML = 'MOVE';
+        output_info('move to left', 3);
+    };
+
+    $left_elem.onmouseup = () => {
+        $left_elem.innerHTML = '後退';
+        output_info('stop to move back', 0);
+    };
+    var $right_elem = document.getElementById("right");
+    $right_elem.onmousedown = () => { 
+        $right_elem.innerHTML = 'MOVE';
+        output_info('move to right', 4);
+    };
+
+    $right_elem.onmouseup = () => {
+        $right_elem.innerHTML = '後退';
+        output_info('stop to move back', 0);
+    };
 }
  
 function output_info($text_info, direction) {
