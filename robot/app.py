@@ -15,13 +15,12 @@ def index():
 
 @app.route('/move', methods=['POST'])
 def move():
-    res = request.json['d'] if len(request.json) > 0 else 0
+    # res = request.json['d'] if len(request.json) > 0 else 0
+    res = request.json['d']
     print(res)
-    if res > 0:
-        move_body.run(int(res))
-        return '200'
-    else:
-        return '400'
+    move_body.run(int(res))
+    return '200'
+   
 
 if __name__ == '__main__':
     app.run(debug=True, host="0.0.0.0", port=5000)
