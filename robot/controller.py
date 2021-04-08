@@ -24,7 +24,6 @@ class robot_controller:
             pass
 class MoveBody:
     def __init__(self, pins):
-        # self.robot = Robot(left=(pins[0],pins[1]), right=(pins[2], pins[3]))
         GPIO.setwarnings(False)
         GPIO.setmode(GPIO.BCM)
         self.pinList = pins
@@ -37,7 +36,7 @@ class MoveBody:
             3 : [0,1,1,0],
             4 : [1,0,0,1],
         }
-        for pin, val in zip(self.pinList, actions[direction])
+        for pin, val in zip(self.pinList, actions[direction]):
             GPIO.output(pin, val)
         sleep(1.0)
         GPIO.cleanup()
