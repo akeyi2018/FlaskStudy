@@ -19,7 +19,9 @@ def move():
     print(res)
     if res > 0:
         move_body.run(int(res))
-    return '200'
+        return '200'
+    else:
+        return '400'
 
 if __name__ == '__main__':
     app.run(debug=True, host="0.0.0.0", port=5000)
