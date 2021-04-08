@@ -7,10 +7,7 @@ import json
 app = Flask(__name__)
 control = robot_controller(os.path.dirname(os.path.realpath(__file__)))
 config = control.get_config()
-
-def move_robot(direction):
-    move_body = MoveBody(control.get_config()['Robot'])
-    move_body.run(direction)
+move_body = MoveBody(control.get_config()['Robot'])
 
 @app.route('/', methods=['GET'])
 def index():
@@ -20,8 +17,7 @@ def index():
 def move():
     res = request.json['d'] if len(request.json) > 0 else 0
     print(res)
-    # control.set_robot_info(res)
-    move_robot(res)
+    move_body.run(int(res))
     return '200'
 
 if __name__ == '__main__':
