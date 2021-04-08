@@ -1,32 +1,23 @@
 window.onload = () => {
     var $front_elem = document.getElementById("front");
     $front_elem.onmousedown = () => { 
-        // inter_id = setInterval(
-            // function(){
-                $front_elem.innerHTML = 'MOVE';
-                output_info('move to front', 1);
-            // }
-            // , 100); 
+        $front_elem.innerHTML = 'MOVE';
+        output_info('move to front', 1);
     };
 
     $front_elem.onmouseup = () => {
-        // clearInterval(inter_id);
         $front_elem.innerHTML = '前進';
-        output_info('stop to move front!');
+        output_info('stop to move front!', 0);
     };
     var $back_elem = document.getElementById("back");
     $back_elem.onmousedown = () => { 
-        // inter_id_2 = setInterval(
-        //     function(){
-                $back_elem.innerHTML = 'MOVE';
-                output_info('move to back', 2);
-            // }, 100); 
+        $back_elem.innerHTML = 'MOVE';
+        output_info('move to back', 2);
     };
 
     $back_elem.onmouseup = () => {
-        // clearInterval(inter_id_2);
         $back_elem.innerHTML = '後退';
-        output_info('stop to move back');
+        output_info('stop to move back', 0);
     };
 }
  
