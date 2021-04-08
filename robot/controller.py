@@ -30,7 +30,7 @@ class MoveBody:
         self.pinList = pins
 
     def run(self, direction):
-         actions = {
+        actions = {
             0 : [0,0,0,0],
             1 : [1,0,1,0],
             2 : [0,1,0,1],
