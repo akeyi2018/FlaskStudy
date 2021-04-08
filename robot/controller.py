@@ -40,7 +40,7 @@ class MoveBody:
         for pin, val in zip(self.pinList, actions[direction]):
             GPIO.output(pin, val)
         sleep(1.0)
-        GPIO.cleanup()
+        # GPIO.cleanup()
 
 if __name__ == '__main__':
     control = robot_controller(os.path.dirname(os.path.realpath(__file__)))
