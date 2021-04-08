@@ -16,6 +16,7 @@ def index():
 def move():
     res = request.json['d'] if len(request.json) > 0 else 0
     print(res)
+    control.set_robot_info(res)
     return '200'
 
 if __name__ == '__main__':
