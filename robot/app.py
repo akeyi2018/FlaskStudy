@@ -16,7 +16,7 @@ def index():
 @app.route('/move', methods=['POST'])
 def move():
     # res = request.json['d'] if len(request.json) > 0 else 0
-    res = request.json['d']
+    res = request.json['d'] if len(request.json) > 0 else 0
     print(res)
     move_body.run(int(res))
     return '200'
