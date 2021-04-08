@@ -1,9 +1,9 @@
 window.onload = () => {
     var $front_elem = document.getElementById("front");
     $front_elem.onclick = () => { 
-        $front_elem.innerHTML = 'MOVE';
+        // $front_elem.innerHTML = 'MOVE';
         output_info('move to front', 1);
-        $front_elem.onclick = null;
+        // $front_elem.onclick = null;
     };
 
     // $front_elem.onmouseup = () => {
@@ -12,9 +12,8 @@ window.onload = () => {
     // };
     var $back_elem = document.getElementById("back");
     $back_elem.onclick = () => { 
-        $back_elem.innerHTML = 'MOVE';
+        // $back_elem.innerHTML = 'MOVE';
         output_info('move to back', 2);
-        $back_elem.onclick = null;
     };
 
     // $back_elem.onmouseup = () => {
@@ -25,7 +24,6 @@ window.onload = () => {
     $left_elem.onmousedown = () => { 
         $left_elem.innerHTML = 'MOVE';
         output_info('move to left', 3);
-        $left_elem.onmousedown = null;
     };
 
     // $left_elem.onmouseup = () => {
@@ -34,13 +32,13 @@ window.onload = () => {
     // };
     var $right_elem = document.getElementById("right");
     $right_elem.onmousedown = () => { 
-        $right_elem.innerHTML = 'MOVE';
+        // $right_elem.innerHTML = 'MOVE';
         output_info('move to right', 4);
     };
 
     var $right_elem = document.getElementById("stop");
     $right_elem.onmousedown = () => { 
-        $right_elem.innerHTML = 'MOVE';
+        // $right_elem.innerHTML = 'MOVE';
         output_info('move to right', 0);
     };
 
