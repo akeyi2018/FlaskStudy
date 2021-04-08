@@ -35,7 +35,7 @@ class MoveBody:
             4 : self.robot.right,
         }
         actions[direction]()
-        sleep(0.1)
+        sleep(1)
 
 if __name__ == '__main__':
     control = robot_controller(os.path.dirname(os.path.realpath(__file__)))
