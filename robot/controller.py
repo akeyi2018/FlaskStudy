@@ -27,6 +27,7 @@ class MoveBody:
         GPIO.setwarnings(False)
         GPIO.setmode(GPIO.BCM)
         self.pinList = pins
+        GPIO.setup(self.pinList, GPIO.OUT)
 
     def run(self, direction):
         actions = {
