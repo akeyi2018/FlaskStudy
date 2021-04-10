@@ -32,7 +32,6 @@ class MoveBody:
         GPIO.setup(self.pinList, GPIO.OUT)
 
     def run(self, direction, tm, val):
-        global val
         if val == 1 :
             print('1') 
             return
@@ -45,6 +44,7 @@ class MoveBody:
         }
         for pin, val in zip(self.pinList, actions[direction]):
             GPIO.output(pin, val)
+            print('OK')
         sleep(tm)
 
 class SensingDistance():
