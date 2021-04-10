@@ -14,9 +14,7 @@ sensor.run()
 
 def rapper(direction):
     control.set_robot_info(direction)
-    while True:
-        move_body.run()
-        break
+    print(move_body.run())
 
 @app.route('/', methods=['GET'])
 def index():

@@ -60,6 +60,7 @@ class MoveBody:
         for pin, val in zip(self.pinList, actions[res['direction']]):
             GPIO.output(pin, val)
         sleep(res['moving_time'])
+        return True
 
 class SensingDistance():
     def __init__(self):
