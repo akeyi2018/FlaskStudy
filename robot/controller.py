@@ -4,8 +4,6 @@ import json, os
 from gpiozero import DistanceSensor, LED
 from signal import pause
 
-led = LED(5)
-
 class robot_controller:
     def __init__(self, path):
         self.path = path
@@ -34,9 +32,9 @@ class MoveBody:
         GPIO.setup(self.pinList, GPIO.OUT)
 
     def run(self, direction, tm):
-        if led.value == 1 :
-            print('1') 
-            return
+        # if led.value == 1 :
+        #     print('1') 
+        #     return
         actions = {
             0 : [0,0,0,0],
             1 : [1,0,1,0],
@@ -49,7 +47,7 @@ class MoveBody:
         sleep(tm)
 
 class SensingDistance():
-    def __init__(self):
+    def __init__(self, led):
         self.sensor = DistanceSensor(27, 17, max_distance=1, threshold_distance=0.1)
 
     def run(self):
