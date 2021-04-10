@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from flask import Flask, render_template, request, redirect, url_for, jsonify
-from controller import robot_controller, MoveBody
+from controller import robot_controller, MoveBody, SensingDistance
 import os
 import json
 
