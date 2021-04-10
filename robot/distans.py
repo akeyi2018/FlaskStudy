@@ -1,7 +1,7 @@
 from gpiozero import DistanceSensor, LED
 from signal import pause
 
-sensor = DistanceSensor(27,17, max_distance=1, threshold_distance=0.2)
+sensor = DistanceSensor(27,17, max_distance=1, threshold_distance=0.1)
 
 led = LED(5)
 
