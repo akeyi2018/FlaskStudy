@@ -51,10 +51,10 @@ class SensingDistance():
     def __init__(self):
         self.sensor = DistanceSensor(27, 17, max_distance=1, threshold_distance=0.1)
 
-    def test1():
+    def test1(self):
         print('Active')
 
-    def test2():
+    def test2(self):
         print('Deactive')
 
     def run(self):
