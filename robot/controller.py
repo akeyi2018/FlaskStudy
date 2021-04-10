@@ -59,7 +59,7 @@ class MoveBody:
         res = control.get_robot_info()
         for pin, val in zip(self.pinList, actions[res['direction']]):
             GPIO.output(pin, val)
-        sleep(res['moving_time'])
+        # sleep(res['moving_time'])
 
 class SensingDistance():
     def __init__(self):
