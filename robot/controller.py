@@ -14,11 +14,25 @@ class robot_controller:
         with open(self.config,  mode='r', encoding='utf-8') as json_file:
             return json.load(json_file)
 
+    def get_robot_info(self):
+        with open(self.robot_info,  mode='r', encoding='utf-8') as json_file:
+            return json.load(json_file)
+
     def set_robot_info(self, direction):
         try:
             with open(self.robot_info, 'r') as json_file:
                 json_data = json.load(json_file)
                 json_data['direction'] = direction
+        
+            with open(self.robot_info , 'w') as json_file:
+                json.dump(json_data, json_file, indent=4)
+        except:
+            pass
+    def set_robot_status(self, status):
+        try:
+            with open(self.robot_info, 'r') as json_file:
+                json_data = json.load(json_file)
+                json_data['status'] = status
         
             with open(self.robot_info , 'w') as json_file:
                 json.dump(json_data, json_file, indent=4)
@@ -52,10 +66,14 @@ class SensingDistance():
         self.sensor = DistanceSensor(27, 17, max_distance=1, threshold_distance=0.1)
 
     def test1(self):
-        print('Active')
+        ro = robot_controller(os.path.dirname(os.path.realpath(__file__)))
+        ro.set_robot_status(1)
+        print(ro.get_robot_info['status'])
 
     def test2(self):
-        print('Deactive')
+        ro = robot_controller(os.path.dirname(os.path.realpath(__file__)))
+        ro.set_robot_status(0)
+        print(ro.get_robot_info['status'])
 
     def run(self):
         self.sensor.when_deactivated = self.test1
