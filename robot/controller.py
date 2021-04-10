@@ -87,7 +87,7 @@ if __name__ == '__main__':
     s = SensingDistance()
     s.run()
     control.set_robot_info(1)
-    while True:
-        if control.get_robot_info()['direction'] == 0:
-            break
-        move_body.run()
+    # while True:
+    #     if control.get_robot_info()['direction'] == 0:
+    #         break
+    move_body.run()
