@@ -20,6 +20,11 @@ def rapper(direction):
 def index():
     return render_template('front_back.html')
 
+@app.route('/stop', methods=['POST'])
+def stop():
+    rapper(0)
+    return '200'
+
 @app.route('/move', methods=['POST'])
 def move():
     if len(request.json) > 0 :
