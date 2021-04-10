@@ -31,8 +31,8 @@ class MoveBody:
         self.pinList = pins
         GPIO.setup(self.pinList, GPIO.OUT)
 
-    def run(self, direction, tm):
-        if led.value == 1 :
+    def run(self, direction, tm, val):
+        if val == 1 :
             print('1') 
             return
         actions = {
