@@ -85,6 +85,6 @@ if __name__ == '__main__':
     s = SensingDistance()
     s.run()
     while True:
-        move_body.run(1, 0.1)
+        move_body.run(1, 1)
     
       
