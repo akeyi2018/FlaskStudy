@@ -17,7 +17,7 @@ def test2():
 
 sensor.when_in_range = led.on
 sensor.when_out_of_range = led.off
-# sensor.when_in_range = test1
-# sensor.when_out_of_range = test2
+sensor.when_in_range = test1
+sensor.when_out_of_range = test2
 
 pause()
