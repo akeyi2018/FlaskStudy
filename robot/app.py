@@ -11,10 +11,11 @@ control.set_robot_info(0)
 move_body = MoveBody(control.get_config()['Robot'])
 sensor = SensingDistance()
 sensor.run()
+move_body.run()
 
 def rapper(direction):
     control.set_robot_info(direction)
-    move_body.run()
+    # move_body.run()
 
 @app.route('/', methods=['GET'])
 def index():
