@@ -13,6 +13,7 @@ led = LED(5)
 sensor = SensingDistance()
 sensor.run(led)
 
+
 @app.route('/', methods=['GET'])
 def index():
     return render_template('front_back.html')
