@@ -55,8 +55,8 @@ class SensingDistance:
         print('set status one')
 
     def run(self):
-        self.sensor.when_deactivated = lambda : self.set_status_zero
-        self.sensor.when_activated = lambda : self.set_status_one
+        self.sensor.when_deactivated = lambda : self.set_status_zero()
+        self.sensor.when_activated = lambda : self.set_status_one()
         pause() 
 
 
