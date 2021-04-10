@@ -54,16 +54,16 @@ class SensingDistance():
     def run(self):
         self.sensor.when_deactivated = self.led.on 
         self.sensor.when_activated = self.led.off
-        self.led.on = self.callback1
-        self.led.off = self.callback2
+        self.led.on = self.callback1(1)
+        self.led.off = self.callback2(0)
         pause() 
 
 
-def OK():
-    print('OK')
+def OK(val):
+    print('OK{}', val)
 
-def NG():
-    print('NG')
+def NG(val):
+    print('NG{}', val)
 
 if __name__ == '__main__':
     # control = robot_controller(os.path.dirname(os.path.realpath(__file__)))
