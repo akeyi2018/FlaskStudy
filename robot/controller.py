@@ -4,6 +4,7 @@ import json, os
 from gpiozero import DistanceSensor, LED
 from signal import pause
 
+led = LED(5)
 
 class robot_controller:
     def __init__(self, path):
@@ -33,6 +34,8 @@ class MoveBody:
         GPIO.setup(self.pinList, GPIO.OUT)
 
     def run(self, direction, tm):
+        if led.value = 0:
+            return 
         actions = {
             0 : [0,0,0,0],
             1 : [1,0,1,0],
@@ -47,13 +50,12 @@ class MoveBody:
 class SensingDistance():
     def __init__(self, callback1):
         self.sensor = DistanceSensor(27, 17, max_distance=1, threshold_distance=0.1)
-        self.led = LED(5)
-        self.callback1 = callback1
+        # self.callback1 = callback1
 
     def run(self):
         self.sensor.when_deactivated = self.led.on 
         self.sensor.when_activated = self.led.off
-        self.callback1(self.led.value)
+        # self.callback1(self.led.value)
         pause() 
 
 
@@ -64,11 +66,13 @@ def NG(val):
     print('NG{}', val)
 
 if __name__ == '__main__':
-    # control = robot_controller(os.path.dirname(os.path.realpath(__file__)))
-    # movebody = MoveBody(control.get_config()['Robot'])
-    # movebody.run(1, 1)
-    # movebody.run(2, 1)
-    # movebody.run(0,0.001)
+    control = robot_controller(os.path.dirname(os.path.realpath(__file__)))
+    movebody = MoveBody(control.get_config()['Robot'])
     sensor = SensingDistance(OK)
     sensor.run()
+    for _ in range(5):
+        movebody.run(1, 1)
+    # movebody.run(2, 1)
+    # movebody.run(0,0.001)
+   
     
