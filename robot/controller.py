@@ -51,12 +51,19 @@ class SensingDistance():
     def __init__(self):
         self.sensor = DistanceSensor(27, 17, max_distance=1, threshold_distance=0.1)
 
+    def test1():
+        print('Active')
+
+    def test2():
+        print('Deactive')
+
     def run(self, led):
-        self.sensor.when_deactivated = led.on
-        self.sensor.when_activated = led.off
+        self.sensor.when_deactivated = self.test1
+        self.sensor.when_activated = self.test2
         # pause() 
 
 if __name__ == '__main__':
-    pass
+    s = SensingDistance()
+    s.run(5)
     
       
