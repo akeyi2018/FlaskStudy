@@ -18,6 +18,7 @@ def rapper(direction):
             move_body.run(direction, 0.1)
         else:
             move_body.run(0, 0.1)
+            break
 
 @app.route('/', methods=['GET'])
 def index():
