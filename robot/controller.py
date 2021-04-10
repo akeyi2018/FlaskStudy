@@ -48,13 +48,13 @@ class MoveBody:
         sleep(tm)
 
 class SensingDistance():
-    def __init__(self, callback1):
+    def __init__(self):
         self.sensor = DistanceSensor(27, 17, max_distance=1, threshold_distance=0.1)
         # self.callback1 = callback1
 
     def run(self):
-        self.sensor.when_deactivated = self.led.on 
-        self.sensor.when_activated = self.led.off
+        self.sensor.when_deactivated = led.on 
+        self.sensor.when_activated = led.off
         # self.callback1(self.led.value)
         pause() 
 
@@ -68,7 +68,7 @@ def NG(val):
 if __name__ == '__main__':
     control = robot_controller(os.path.dirname(os.path.realpath(__file__)))
     movebody = MoveBody(control.get_config()['Robot'])
-    sensor = SensingDistance(OK)
+    sensor = SensingDistance()
     sensor.run()
     for _ in range(5):
         movebody.run(1, 1)
