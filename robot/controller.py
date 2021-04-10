@@ -54,7 +54,7 @@ class SensingDistance():
     def run(self):
         self.sensor.when_deactivated = self.led.on 
         self.sensor.when_activated = self.led.off
-        self.led.on = self.callback1(1)
+        self.led.is_active = self.callback1(1)
         self.led.off = self.callback2(0)
         pause() 
 
