@@ -1,7 +1,7 @@
 import RPi.GPIO as GPIO
 from time import sleep
 import json, os
-from gpiozero import DistanceSensor
+from gpiozero import DistanceSensor, LED
 from signal import pause
 
 
@@ -47,6 +47,7 @@ class MoveBody:
 class SensingDistance:
     def __init__(self):
         self.sensor = DistanceSensor(27, 17, max_distance=1, threshold_distance=0.1)
+        self.led = LED(5)
     
     def set_status_zero():
         print('set status zero')
@@ -55,11 +56,11 @@ class SensingDistance:
         print('set status one')
 
     def run(self):
-        callback = [self.sensor.when_deactivated, self.sensor.when_activated]
-        res = map(lambda re : re , callback)
-        print(res)
-        # self.sensor.when_deactivated = lambda : 
-        # self.sensor.when_activated = lambda : self.set_status_one()
+        # callback = [self.sensor.when_deactivated, self.sensor.when_activated]
+        # res = map(lambda re : re , callback)
+        # print(res)
+        self.sensor.when_deactivated = led.on 
+        self.sensor.when_activated = led.off
         pause() 
 
 
