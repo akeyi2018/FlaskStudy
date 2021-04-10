@@ -45,17 +45,15 @@ class MoveBody:
         sleep(tm)
 
 class SensingDistance():
-    def __init__(self, callback1, callback2):
+    def __init__(self, callback1):
         self.sensor = DistanceSensor(27, 17, max_distance=1, threshold_distance=0.1)
         self.led = LED(5)
         self.callback1 = callback1
-        self.callback2 = callback2
 
     def run(self):
         self.sensor.when_deactivated = self.led.on 
         self.sensor.when_activated = self.led.off
-        self.led.is_active = self.callback1(1)
-        self.led.off = self.callback2(0)
+        self.callback1(self.led.value)
         pause() 
 
 
@@ -71,6 +69,6 @@ if __name__ == '__main__':
     # movebody.run(1, 1)
     # movebody.run(2, 1)
     # movebody.run(0,0.001)
-    sensor = SensingDistance(OK,NG)
+    sensor = SensingDistance(OK)
     sensor.run()
     
