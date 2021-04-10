@@ -51,8 +51,6 @@ class SensingDistance():
         self.sensor = DistanceSensor(27, 17, max_distance=1, threshold_distance=0.1)
 
     def run(self, direction, tm):
-        self.led = led
-
         self.control = robot_controller(os.path.dirname(os.path.realpath(__file__)))
         self.movebody = MoveBody(control.get_config()['Robot'])
 
@@ -61,7 +59,7 @@ class SensingDistance():
         # pause() 
 
 if __name__ == '__main__':
-    
+    led()
     sensor = SensingDistance()
     sensor.run(1,5)
     
