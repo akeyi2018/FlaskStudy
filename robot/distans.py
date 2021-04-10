@@ -9,11 +9,12 @@ led = LED(5)
     # print('Distance to nearest object is', sensor.distance, 'm')
     # sleep(1)
 
-def test():
+def test1():
     print('Active')
 
-sensor.when_activated = test() 
-# sensor.when_in_range = led.on
-# sensor.when_out_of_range = led.off
+def test2():
+    print('Deactive')
+sensor.when_in_range = test1
+sensor.when_out_of_range = test2
 
 pause()
