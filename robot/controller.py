@@ -50,19 +50,20 @@ class SensingDistance():
     def __init__(self):
         self.sensor = DistanceSensor(27, 17, max_distance=1, threshold_distance=0.1)
 
-    def run(self, led):
+    def run(self, direction, tm):
         self.led = led
-        self.sensor.when_deactivated = self.led.on
-        self.sensor.when_activated = self.led.off
+
+        self.control = robot_controller(os.path.dirname(os.path.realpath(__file__)))
+        self.movebody = MoveBody(control.get_config()['Robot'])
+
+        self.sensor.when_deactivated = self.movebody.run(direction, tm)
+        self.sensor.when_activated = self.movebody.run(0, 0.001)
         # pause() 
 
 if __name__ == '__main__':
-    control = robot_controller(os.path.dirname(os.path.realpath(__file__)))
-    movebody = MoveBody(control.get_config()['Robot'])
+    
     sensor = SensingDistance()
-    sensor.run()
+    sensor.run(1,5)
     
-    for _ in range(10):
-        movebody.run(1, 1)
-    
+  
     
