@@ -68,15 +68,11 @@ class SensingDistance():
         ro = robot_controller(os.path.dirname(os.path.realpath(__file__)))
         ro.set_robot_info(1)
         self.led.on()
-        move_body = MoveBody(ro.get_config['Robot'])
-        move_body.run()
 
     def test2(self):
         ro = robot_controller(os.path.dirname(os.path.realpath(__file__)))
         ro.set_robot_info(0)
         self.led.off()
-        move_body = MoveBody(ro.get_config['Robot'])
-        move_body.run()
 
     def run(self):
         self.sensor.when_in_range = self.test1
