@@ -12,8 +12,8 @@ led = LED(5)
 def test():
     print('Active')
 
-sensor.when_activated = test() 
-# sensor.when_in_range = led.on
-# sensor.when_out_of_range = led.off
+# sensor.when_activated = test() 
+sensor.when_in_range = led.on
+sensor.when_out_of_range = led.off
 
-# pause()
+pause()
