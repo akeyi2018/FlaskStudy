@@ -72,8 +72,8 @@ class SensingDistance():
         print(ro.get_robot_info()['status'])
 
     def run(self):
-        self.sensor.when_deactivated = self.test1
-        self.sensor.when_activated = self.test2
+        self.sensor.when_in_range = self.test1
+        # self.sensor.when_activated = self.test2
         # pause() 
 
 if __name__ == '__main__':
