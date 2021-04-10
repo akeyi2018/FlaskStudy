@@ -69,12 +69,12 @@ class SensingDistance():
 
     def test1(self):
         ro = robot_controller(os.path.dirname(os.path.realpath(__file__)))
-        ro.set_robot_info(1)
+        ro.set_robot_info(0)
         self.led.on()
 
     def test2(self):
         ro = robot_controller(os.path.dirname(os.path.realpath(__file__)))
-        ro.set_robot_info(0)
+        ro.set_robot_info(1)
         self.led.off()
 
     def run(self):
@@ -86,6 +86,7 @@ if __name__ == '__main__':
     move_body = MoveBody(control.get_config()['Robot'])
     s = SensingDistance()
     s.run()
+
     while True:
         if control.get_robot_info()['status'] == 0:
             move_body.run(1, 0.1)
