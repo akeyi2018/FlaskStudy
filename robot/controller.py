@@ -47,10 +47,10 @@ class MoveBody:
         sleep(tm)
 
 class SensingDistance():
-    def __init__(self, led):
+    def __init__(self):
         self.sensor = DistanceSensor(27, 17, max_distance=1, threshold_distance=0.1)
 
-    def run(self):
+    def run(self, led):
         self.sensor.when_deactivated = led.on 
         self.sensor.when_activated = led.off
         # pause() 
