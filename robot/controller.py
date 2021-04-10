@@ -59,8 +59,8 @@ class SensingDistance:
         # callback = [self.sensor.when_deactivated, self.sensor.when_activated]
         # res = map(lambda re : re , callback)
         # print(res)
-        self.sensor.when_deactivated = led.on 
-        self.sensor.when_activated = led.off
+        self.sensor.when_deactivated = self.led.on 
+        self.sensor.when_activated = self.led.off
         pause() 
 
 
