@@ -59,9 +59,6 @@ class SensingDistance():
         # pause() 
 
 if __name__ == '__main__':
-    led()
     sensor = SensingDistance()
     sensor.run(1,5)
-    
-  
-    
+      
