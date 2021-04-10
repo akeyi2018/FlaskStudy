@@ -8,6 +8,8 @@ app = Flask(__name__)
 control = robot_controller(os.path.dirname(os.path.realpath(__file__)))
 config = control.get_config()
 move_body = MoveBody(control.get_config()['Robot'])
+sensor = SensingDistance()
+sensor.run()
 
 @app.route('/', methods=['GET'])
 def index():
@@ -17,16 +19,11 @@ def index():
 def move():
     # res = request.json['d'] if len(request.json) > 0 else 0
     if len(request.json) > 0 :
-        print(request.json['d'])
+        # print(request.json['d'])
         move_body.run(int(request.json['d']), 1)
         return '200'
     else:
-        return '400'
-    # return '200'
-    # if len(request.json) > 0 else 0
-    # print(res)
-    # move_body.run(int(res))
-    # return '200'   
+        return '400'   
 
 if __name__ == '__main__':
     app.run(debug=True, host="0.0.0.0", port=5000)
