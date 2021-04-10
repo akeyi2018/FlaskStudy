@@ -60,21 +60,21 @@ class MoveBody:
 class SensingDistance():
     def __init__(self):
         self.sensor = DistanceSensor(27, 17, max_distance=1, threshold_distance=0.1)
+        self.led = LED(5)
 
     def test1(self):
         ro = robot_controller(os.path.dirname(os.path.realpath(__file__)))
         ro.set_robot_status(1)
-        print(ro.get_robot_info()['status'])
+        self.led.on()
 
     def test2(self):
         ro = robot_controller(os.path.dirname(os.path.realpath(__file__)))
         ro.set_robot_status(0)
-        print(ro.get_robot_info()['status'])
+        self.led.off()
 
     def run(self):
         self.sensor.when_in_range = self.test1
         self.sensor.when_activated = self.test2
-        # pause() 
 
 if __name__ == '__main__':
     control = robot_controller(os.path.dirname(os.path.realpath(__file__)))
