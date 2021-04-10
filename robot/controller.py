@@ -36,7 +36,9 @@ class MoveBody:
     def run(self, direction, tm):
         if led.value == 1:
             print('1')
-            return 
+            return
+        else:
+            print('0') 
         actions = {
             0 : [0,0,0,0],
             1 : [1,0,1,0],
