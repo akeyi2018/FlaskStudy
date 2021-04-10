@@ -34,11 +34,7 @@ class MoveBody:
         GPIO.setup(self.pinList, GPIO.OUT)
 
     def run(self, direction, tm):
-        if led.value == 1:
-            print('1')
-            return
-        else:
-            print('0') 
+        if led.value == 1 : return None
         actions = {
             0 : [0,0,0,0],
             1 : [1,0,1,0],
@@ -51,14 +47,14 @@ class MoveBody:
         sleep(tm)
 
 class SensingDistance():
-    def __init__(self, callback1):
+    def __init__(self):
         self.sensor = DistanceSensor(27, 17, max_distance=1, threshold_distance=0.1)
-        self.callback1 = callback1
+        # self.callback1 = callback1
 
     def run(self):
         self.sensor.when_deactivated = led.on 
         self.sensor.when_activated = led.off
-        self.callback1(led.value)
+        # self.callback1(led.value)
         # pause() 
 
 
@@ -73,8 +69,10 @@ if __name__ == '__main__':
     movebody = MoveBody(control.get_config()['Robot'])
     sensor = SensingDistance(OK)
     sensor.run()
-    # for _ in range(5):
-    #     movebody.run(1, 1)
+    
+    for _ in range(10):
+        movebody.run(1, 1)
+    
     # movebody.run(2, 1)
     # movebody.run(0,0.001)
    
