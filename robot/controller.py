@@ -68,12 +68,12 @@ class SensingDistance():
     def test1(self):
         ro = robot_controller(os.path.dirname(os.path.realpath(__file__)))
         ro.set_robot_status(1)
-        print(ro.get_robot_info['status'])
+        print(ro.get_robot_info()['status'])
 
     def test2(self):
         ro = robot_controller(os.path.dirname(os.path.realpath(__file__)))
         ro.set_robot_status(0)
-        print(ro.get_robot_info['status'])
+        print(ro.get_robot_info()['status'])
 
     def run(self):
         self.sensor.when_deactivated = self.test1
