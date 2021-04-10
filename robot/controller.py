@@ -57,13 +57,13 @@ class SensingDistance():
     def test2():
         print('Deactive')
 
-    def run(self, led):
+    def run(self):
         self.sensor.when_deactivated = self.test1
         self.sensor.when_activated = self.test2
         # pause() 
 
 if __name__ == '__main__':
     s = SensingDistance()
-    s.run(5)
+    s.run()
     
       
