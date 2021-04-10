@@ -44,25 +44,24 @@ class MoveBody:
             GPIO.output(pin, val)
         sleep(tm)
 
-class SensingDistance:
-    def __init__(self):
+class SensingDistance():
+    def __init__(self, callback1, callback2):
         self.sensor = DistanceSensor(27, 17, max_distance=1, threshold_distance=0.1)
         self.led = LED(5)
-    
-    def set_status_zero():
-        print('set status zero')
-    
-    def set_status_one():
-        print('set status one')
 
     def run(self):
-        # callback = [self.sensor.when_deactivated, self.sensor.when_activated]
-        # res = map(lambda re : re , callback)
-        # print(res)
         self.sensor.when_deactivated = self.led.on 
         self.sensor.when_activated = self.led.off
+        self.led.when_activated = self.callback1
+        self.led.when_deactivated = self.callback2
         pause() 
 
+
+def OK():
+    print('OK')
+
+def NG():
+    print('NG')
 
 if __name__ == '__main__':
     # control = robot_controller(os.path.dirname(os.path.realpath(__file__)))
@@ -70,6 +69,6 @@ if __name__ == '__main__':
     # movebody.run(1, 1)
     # movebody.run(2, 1)
     # movebody.run(0,0.001)
-    sensor = SensingDistance()
+    sensor = SensingDistance(OK, NG)
     sensor.run()
     
