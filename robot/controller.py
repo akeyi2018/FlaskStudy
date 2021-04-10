@@ -3,6 +3,7 @@ from time import sleep
 import json, os
 from gpiozero import DistanceSensor, LED
 from signal import pause
+from flask import redirect, url_for
 
 class robot_controller:
     def __init__(self, path):
@@ -68,6 +69,7 @@ class SensingDistance():
         ro = robot_controller(os.path.dirname(os.path.realpath(__file__)))
         ro.set_robot_info(1)
         self.led.on()
+        return redirect(url_for('/stop'))
 
     def test2(self):
         ro = robot_controller(os.path.dirname(os.path.realpath(__file__)))
