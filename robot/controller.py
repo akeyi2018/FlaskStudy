@@ -55,13 +55,11 @@ class MoveBody:
             3 : [0,1,1,0],
             4 : [1,0,0,1],
         }
-        while True:
-            res = control.get_robot_info()
-            if res['direction'] == 0:
-                break
-            for pin, val in zip(self.pinList, actions[res['direction']]):
-                GPIO.output(pin, val)
-            sleep(res['moving_time'])
+        
+        res = control.get_robot_info()
+        for pin, val in zip(self.pinList, actions[res['direction']]):
+            GPIO.output(pin, val)
+        sleep(res['moving_time'])
 
 class SensingDistance():
     def __init__(self):
