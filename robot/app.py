@@ -7,18 +7,14 @@ import json
 app = Flask(__name__)
 control = robot_controller(os.path.dirname(os.path.realpath(__file__)))
 config = control.get_config()
-control.set_robot_status(0)
+control.set_robot_info(0)
 move_body = MoveBody(control.get_config()['Robot'])
 sensor = SensingDistance()
 sensor.run()
 
 def rapper(direction):
-    while True:
-        if control.get_robot_info()['status'] == 0:
-            move_body.run(direction, 0.1)
-        else:
-            move_body.run(0, 0.1)
-            break
+    control.set_robot_info(direction)
+    move_body.run()
 
 @app.route('/', methods=['GET'])
 def index():
