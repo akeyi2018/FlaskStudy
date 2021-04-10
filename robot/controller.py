@@ -52,7 +52,7 @@ class SensingDistance():
 
     def run(self, direction, tm):
         self.control = robot_controller(os.path.dirname(os.path.realpath(__file__)))
-        self.movebody = MoveBody(control.get_config()['Robot'])
+        self.movebody = MoveBody(self.control.get_config()['Robot'])
 
         self.sensor.when_deactivated = self.movebody.run(direction, tm)
         self.sensor.when_activated = self.movebody.run(0, 0.001)
