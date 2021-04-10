@@ -1,6 +1,9 @@
 import RPi.GPIO as GPIO
 from time import sleep
 import json, os
+from gpiozero import DistanceSensor
+from signal import pause
+
 
 class robot_controller:
     def __init__(self, path):
@@ -40,12 +43,29 @@ class MoveBody:
         for pin, val in zip(self.pinList, actions[direction]):
             GPIO.output(pin, val)
         sleep(tm)
-        # GPIO.cleanup()
+
+class SensingDistance:
+    def __init__(self):
+        self.sensor = DistanceSensor(27, 17, max_distance=1, threshold_distance=0.1)
+    
+    def set_status_zero():
+        print('set status zero')
+    
+    def set_status_one():
+        print('set status one')
+
+    def run(self):
+        self.sensor.when_deactivated = self.set_status_zero
+        self.sensor.when_activated = self.set_status_one
+        pause() 
+
 
 if __name__ == '__main__':
-    control = robot_controller(os.path.dirname(os.path.realpath(__file__)))
-    movebody = MoveBody(control.get_config()['Robot'])
-    movebody.run(1, 1)
-    movebody.run(2, 1)
-    movebody.run(0,0.001)
+    # control = robot_controller(os.path.dirname(os.path.realpath(__file__)))
+    # movebody = MoveBody(control.get_config()['Robot'])
+    # movebody.run(1, 1)
+    # movebody.run(2, 1)
+    # movebody.run(0,0.001)
+    sensor = SensingDistance()
+    sensor.run()
     
