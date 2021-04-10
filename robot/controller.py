@@ -48,7 +48,6 @@ class MoveBody:
 
     def run(self):
         control = robot_controller(os.path.dirname(os.path.realpath(__file__)))
-        res = control.get_robot_info()
         actions = {
             0 : [0,0,0,0],
             1 : [1,0,1,0],
@@ -56,9 +55,13 @@ class MoveBody:
             3 : [0,1,1,0],
             4 : [1,0,0,1],
         }
-        for pin, val in zip(self.pinList, actions[res['direction']]):
-            GPIO.output(pin, val)
-        sleep(res['moving_time'])
+        while True:
+            res = control.get_robot_info()
+            if res['direction'] == 0:
+                break
+            for pin, val in zip(self.pinList, actions[res['direction']]):
+                GPIO.output(pin, val)
+            sleep(res['moving_time'])
 
 class SensingDistance():
     def __init__(self):
@@ -69,7 +72,6 @@ class SensingDistance():
         ro = robot_controller(os.path.dirname(os.path.realpath(__file__)))
         ro.set_robot_info(1)
         self.led.on()
-        return redirect(url_for('/stop'))
 
     def test2(self):
         ro = robot_controller(os.path.dirname(os.path.realpath(__file__)))
