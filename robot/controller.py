@@ -48,15 +48,15 @@ class SensingDistance:
     def __init__(self):
         self.sensor = DistanceSensor(27, 17, max_distance=1, threshold_distance=0.1)
     
-    # def set_status_zero():
-    #     print('set status zero')
+    def set_status_zero():
+        print('set status zero')
     
-    # def set_status_one():
-    #     print('set status one')
+    def set_status_one():
+        print('set status one')
 
     def run(self):
-        self.sensor.when_deactivated = lambda : 0
-        self.sensor.when_activated = lambda : 1
+        self.sensor.when_deactivated = lambda : self.set_status_zero
+        self.sensor.when_activated = lambda : self.set_status_one
         pause() 
 
 
