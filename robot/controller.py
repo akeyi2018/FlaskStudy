@@ -45,10 +45,9 @@ class MoveBody:
         self.pinList = pins
         GPIO.setup(self.pinList, GPIO.OUT)
 
-    def run(self, direction, tm, val):
-        if val == 1 :
-            print('1') 
-            return
+    def run(self, direction, tm):
+        ro = robot_controller(os.path.dirname(os.path.realpath(__file__)))
+        if ro.get_robot_info()['status'] == 0 : return
         actions = {
             0 : [0,0,0,0],
             1 : [1,0,1,0],
@@ -78,10 +77,14 @@ class SensingDistance():
     def run(self):
         self.sensor.when_deactivated = self.test1
         self.sensor.when_activated = self.test2
-        pause() 
+        # pause() 
 
 if __name__ == '__main__':
+    control = robot_controller(os.path.dirname(os.path.realpath(__file__)))
+    move_body = MoveBody(control.get_config()['Robot'])
     s = SensingDistance()
     s.run()
+    while True:
+        move_body.run(1, 0.1)
     
       
