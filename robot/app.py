@@ -10,8 +10,8 @@ control = robot_controller(os.path.dirname(os.path.realpath(__file__)))
 config = control.get_config()
 move_body = MoveBody(control.get_config()['Robot'])
 led = LED(5)
-sensor = SensingDistance(led)
-sensor.run()
+sensor = SensingDistance()
+sensor.run(led)
 
 @app.route('/', methods=['GET'])
 def index():
