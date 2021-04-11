@@ -10,14 +10,12 @@
   <style>
     
     #main{
-      width:480px;height:640px;
+      width:480px;height:750px;
     }
 
     .btn{
-      padding-top: 30px;
       display: flex;
       justify-content: space-evenly;
-      padding-left: 30px;
     }
 
     #front, #back, #left, #right 
@@ -33,21 +31,25 @@
     }
     #info{
       margin-top: 0px;
-      width:200px;height:100px;font-size:50px;
+      width:100px;height:60px;font-size:30px;
       padding-left: 200px;
     }
   </style>
 </head>
  
 <body>
+
   <div id="main" class="btn">
     <pre>
+      <h3 id="title"><center>ロボットリモート操作</center></h3><hr>
       <button id="front">前進</button><button id="back">後退</button>
       <button id="left">左折</button><button id="right">右折</button>
       <button id="stop">停止</button>
-      <p id="info">info</p>
+      <h3 id="info">status:</h3><hr>
+      <button id='settings'>各種設定</button><button id='camera'>写真撮影</button><button id='search'>探索</button>
+      <button>バッテリー使用率</button><button>充電</button>
     </pre>
   </div>
+  <h5>©copyright 2020- IoT研究会</h5>
 </body>
- 
 </html>
