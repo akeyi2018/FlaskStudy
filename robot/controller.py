@@ -46,21 +46,7 @@ class MoveBody:
         self.pinList = pins
         GPIO.setup(self.pinList, GPIO.OUT)
 
-    def run(self):
-        control = robot_controller(os.path.dirname(os.path.realpath(__file__)))
-        actions = {
-            0 : [0,0,0,0],
-            1 : [1,0,1,0],
-            2 : [0,1,0,1],
-            3 : [0,1,1,0],
-            4 : [1,0,0,1],
-        }    
-        res = control.get_robot_info()
-        for pin, val in zip(self.pinList, actions[res['direction']]):
-            GPIO.output(pin, val)
-        sleep(res['moving_time'])
-        return True
-    def run2(self, direction, tm):
+    def run(self, direction, tm):
         actions = {
             0 : [0,0,0,0],
             1 : [1,0,1,0],
@@ -72,24 +58,35 @@ class MoveBody:
             GPIO.output(pin, val)
         sleep(tm)
 
-class SensingDistance():
-    def __init__(self):
-        self.sensor = DistanceSensor(27, 17, max_distance=1, threshold_distance=0.1)
-        self.led = LED(5)
+class SensingDistance:
+    def __init__(self, echo, trigger, signal_led, range_distance):
+        self.echo = echo
+        self.trigger = trigger
+        self.signal_led = signal_led
+        self.range_distance = range_distance
+        self.MAX_DISTANCE = 1 
+        self.ROBOT_STATUS_ONE = 1
+        self.ROBOT_STATUS_ZERO = 0
+        self.led = LED(self.signal_led)
+        self.sensor = DistanceSensor(
+            echo=self.echo, 
+            trigger=self.trigger,
+            max_distance= self.MAX_DISTANCE, 
+            threshold_distance=self.range_distance)
 
-    def test1(self):
+    def change_robot_status_one(self):
         ro = robot_controller(os.path.dirname(os.path.realpath(__file__)))
-        ro.set_robot_status(1)
+        ro.set_robot_status(self.ROBOT_STATUS_ONE)
         self.led.on()
 
-    def test2(self):
+    def change_robot_status_zero(self):
         ro = robot_controller(os.path.dirname(os.path.realpath(__file__)))
-        ro.set_robot_status(0)
+        ro.set_robot_status(self.ROBOT_STATUS_ZERO)
         self.led.off()
 
     def run(self):
-        self.sensor.when_in_range = self.test1
-        self.sensor.when_activated = self.test2
+        self.sensor.when_in_range = self.change_robot_status_one
+        self.sensor.when_out_of_range = self.change_robot_status_zero
 
 if __name__ == '__main__':
     control = robot_controller(os.path.dirname(os.path.realpath(__file__)))
@@ -98,6 +95,6 @@ if __name__ == '__main__':
     s.run()
     while True:
         if control.get_robot_info()['status'] == 0:
-            move_body.run2(1, 1)
+            move_body.run(1, 1)
         else:
-            move_body.run2(0, 1)
+            move_body.run(0, 1)
