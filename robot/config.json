@@ -10,7 +10,7 @@
     "distance_sensor":
     {
         "echo": 27, 
-        "triger": 17,
+        "trigger": 17,
         "range_distance": 0.1,
         "max_distance": 1.0,
         "signal_led": 5
