@@ -2,8 +2,7 @@ window.onload = () => {
     var $front_elem = document.getElementById("front");
     $front_elem.onclick = () => { 
         // $front_elem.innerHTML = 'MOVE';
-        output_info('move to front', 1);
-        // $front_elem.onclick = null;
+        move_front('move to front');
     };
 
     // $front_elem.onmouseup = () => {
@@ -16,10 +15,6 @@ window.onload = () => {
         output_info('move to back', 2);
     };
 
-    // $back_elem.onmouseup = () => {
-    //     $back_elem.innerHTML = '後退';
-    //     output_info('stop to move back', 0);
-    // };
     var $left_elem = document.getElementById("left");
     $left_elem.onmousedown = () => { 
         output_info('move to left', 3);
@@ -52,6 +47,19 @@ function stop(direction) {
       {
         type:'POST',
         url: '/stop',
+        data: res,
+        contentType: 'application/json'
+      });
+}
+
+function move_front($text_info) {
+    var res = JSON.stringify( { "d": 1 } );
+    var $info = document.getElementById('info');
+    $info.innerHTML = $text_info;
+    $.ajax(
+      {
+        type:'POST',
+        url: '/move_front',
         data: res,
         contentType: 'application/json'
       });
