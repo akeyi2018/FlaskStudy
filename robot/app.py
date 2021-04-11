@@ -7,20 +7,18 @@ from time import sleep
 
 app = Flask(__name__)
 control = robot_controller(os.path.dirname(os.path.realpath(__file__)))
-config = control.get_config()
 control.set_robot_status(0)
-move_body = MoveBody(control.get_config()['Robot'])
-sensor = SensingDistance()
+move_body = MoveBody(control)
+sensor = SensingDistance(control)
 sensor.run()
 
 def rapper(direction):
     control.set_robot_status(0)
     while True:
         if control.get_robot_info()['status'] == 0:
-            move_body.run2(direction, 0.1)
-            # move_body.run2(0, 0.01)
+            move_body.run(direction, 0.1)
         else:
-            move_body.run2(0, 0.01)
+            move_body.run(0, 0.01)
             break
 
 @app.route('/', methods=['GET'])
