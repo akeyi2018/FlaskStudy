@@ -13,9 +13,13 @@ sensor = SensingDistance()
 sensor.run()
 
 def rapper(direction):
-    control.set_robot_info(direction)
-    move_body.run2(direction, 0.1)
-    move_body.run2(0, 0.1)
+    while True:
+        if control.get_robot_info()['status'] == 0:
+            move_body.run2(direction, 0.1)
+            move_body.run2(0, 0.01)
+        else:
+            move_body.run2(0, 0.01)
+            break
 
 @app.route('/', methods=['GET'])
 def index():
