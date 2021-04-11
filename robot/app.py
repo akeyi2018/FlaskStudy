@@ -13,6 +13,7 @@ sensor = SensingDistance()
 sensor.run()
 
 def rapper(direction):
+    control.set_robot_status(0)
     while True:
         if control.get_robot_info()['status'] == 0:
             move_body.run2(direction, 0.1)
