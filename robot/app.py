@@ -34,6 +34,7 @@ def stop():
 @app.route('/move', methods=['POST'])
 def move():
     if len(request.json) > 0 :
+        control.set_robot_status(1)
         rapper(int(request.json['d']))
         return '200'
     else:
