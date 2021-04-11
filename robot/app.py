@@ -37,7 +37,16 @@ def move():
         rapper(int(request.json['d']))
         return '200'
     else:
-        return '400'   
+        return '400' 
+
+@app.route('/move_front', methods=['POST'])
+def move_front():
+    if len(request.json) > 0 :
+        control.set_robot_status(1)
+        rapper(int(request.json['d']))
+        return '200'
+    else:
+        return '400'  
 
 if __name__ == '__main__':
     app.run(debug=True, host="0.0.0.0", port=5000)
