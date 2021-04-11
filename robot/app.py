@@ -3,6 +3,7 @@ from flask import Flask, render_template, request, redirect, url_for, jsonify
 from controller import robot_controller, MoveBody, SensingDistance
 import os
 import json
+from time import sleep
 
 app = Flask(__name__)
 control = robot_controller(os.path.dirname(os.path.realpath(__file__)))
@@ -34,20 +35,12 @@ def stop():
 @app.route('/move', methods=['POST'])
 def move():
     control.set_robot_status(1)
+    sleep(0.1)
     if len(request.json) > 0 :
         rapper(int(request.json['d']))
         return '200'
     else:
         return '400' 
-
-@app.route('/move_front', methods=['POST'])
-def move_front():
-    control.set_robot_status(1)
-    if len(request.json) > 0 :
-        rapper(int(request.json['d']))
-        return '200'
-    else:
-        return '400'  
 
 if __name__ == '__main__':
     app.run(debug=True, host="0.0.0.0", port=5000)
