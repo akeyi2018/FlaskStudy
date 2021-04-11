@@ -40,10 +40,11 @@ class robot_controller:
         except:
             pass
 class MoveBody:
-    def __init__(self, pins):
+    def __init__(self, robot):
+        self.robot = robot
         GPIO.setwarnings(False)
         GPIO.setmode(GPIO.BCM)
-        self.pinList = pins
+        self.pinList = self.robot.get_config()['Robot']
         GPIO.setup(self.pinList, GPIO.OUT)
 
     def run(self, direction, tm):
@@ -59,12 +60,14 @@ class MoveBody:
         sleep(tm)
 
 class SensingDistance:
-    def __init__(self, echo, trigger, signal_led, range_distance):
-        self.echo = echo
-        self.trigger = trigger
-        self.signal_led = signal_led
-        self.range_distance = range_distance
-        self.MAX_DISTANCE = 1 
+    def __init__(self, robot):
+        self.robot = robot
+        self.sensor_info = self.robot.get_config()['distance_sensor']
+        self.echo = self.sensor_info.echo
+        self.trigger = self.sensor_info.trigger
+        self.signal_led = self.sensor_info.signal_led
+        self.range_distance = self.sensor_info.range_distance
+        self.MAX_DISTANCE = self.sensor_info.max_distance 
         self.ROBOT_STATUS_ONE = 1
         self.ROBOT_STATUS_ZERO = 0
         self.led = LED(self.signal_led)
@@ -72,16 +75,14 @@ class SensingDistance:
             echo=self.echo, 
             trigger=self.trigger,
             max_distance= self.MAX_DISTANCE, 
-            threshold_distance=self.range_distance)
-
+            threshold_distance=self.range_distance
+            )
     def change_robot_status_one(self):
-        ro = robot_controller(os.path.dirname(os.path.realpath(__file__)))
-        ro.set_robot_status(self.ROBOT_STATUS_ONE)
+        self.robot.set_robot_status(self.ROBOT_STATUS_ONE)
         self.led.on()
 
     def change_robot_status_zero(self):
-        ro = robot_controller(os.path.dirname(os.path.realpath(__file__)))
-        ro.set_robot_status(self.ROBOT_STATUS_ZERO)
+        self.robot.set_robot_status(self.ROBOT_STATUS_ZERO)
         self.led.off()
 
     def run(self):
@@ -89,12 +90,12 @@ class SensingDistance:
         self.sensor.when_out_of_range = self.change_robot_status_zero
 
 if __name__ == '__main__':
-    control = robot_controller(os.path.dirname(os.path.realpath(__file__)))
-    move_body = MoveBody(control.get_config()['Robot'])
-    s = SensingDistance()
+    robot = robot_controller(os.path.dirname(os.path.realpath(__file__)))
+    move_body = MoveBody(robot)
+    s = SensingDistance(robot)
     s.run()
     while True:
-        if control.get_robot_info()['status'] == 0:
+        if robot.get_robot_info()['status'] == 0:
             move_body.run(1, 1)
         else:
             move_body.run(0, 1)
