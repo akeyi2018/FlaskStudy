@@ -63,11 +63,11 @@ class SensingDistance:
     def __init__(self, robot):
         self.robot = robot
         self.sensor_info = self.robot.get_config()['distance_sensor']
-        self.echo = self.sensor_info.echo
-        self.trigger = self.sensor_info.trigger
-        self.signal_led = self.sensor_info.signal_led
-        self.range_distance = self.sensor_info.range_distance
-        self.MAX_DISTANCE = self.sensor_info.max_distance 
+        self.echo = self.sensor_info['echo']
+        self.trigger = self.sensor_info['trigger']
+        self.signal_led = self.sensor_info['signal_led']
+        self.range_distance = self.sensor_info['range_distance']
+        self.MAX_DISTANCE = self.sensor_info['max_distance'] 
         self.ROBOT_STATUS_ONE = 1
         self.ROBOT_STATUS_ZERO = 0
         self.led = LED(self.signal_led)
