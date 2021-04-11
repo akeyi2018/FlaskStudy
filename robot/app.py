@@ -6,34 +6,35 @@ import json
 from time import sleep
 
 app = Flask(__name__)
+
 control = robot_controller(os.path.dirname(os.path.realpath(__file__)))
-control.set_robot_status(0)
+config = control.get_config()['settings']
+control.set_robot_status(config['STATUS_ZERO'])
 move_body = MoveBody(control)
 sensor = SensingDistance(control)
 sensor.run()
 
-def rapper(direction):
-    control.set_robot_status(0)
+def rapper(move_direction):
+    control.set_robot_status(config['STATUS_ZERO'])
     while True:
         if control.get_robot_info()['status'] == 0:
-            move_body.run(direction, 0.1)
+            move_body.run(move_direction, config['moving_time'])
         else:
-            move_body.run(0, 0.01)
+            move_body.run(config['STOP_ROBOT'], config['stop_time'])
             break
 
 @app.route('/', methods=['GET'])
 def index():
-    return render_template('front_back.html')
+    return render_template('remote_contol.html')
 
 @app.route('/stop', methods=['POST'])
 def stop():
-    control.set_robot_status(1)
+    control.set_robot_status(config['STATUS_ONE'])
     return '200'
 
 @app.route('/move', methods=['POST'])
 def move():
-    control.set_robot_status(1)
-    sleep(0.1)
+    control.set_robot_status(config['STATUS_ONE'])
     if len(request.json) > 0 :
         rapper(int(request.json['d']))
         return '200'
