@@ -27,7 +27,7 @@ def index():
 
 @app.route('/stop', methods=['POST'])
 def stop():
-    rapper(0)
+    control.set_robot_status(1)
     return '200'
 
 @app.route('/move', methods=['POST'])
