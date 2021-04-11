@@ -31,6 +31,8 @@ function stop(direction) {
             "d": direction
         }
         );
+    var $info = document.getElementById('info');
+    $info.innerHTML = '停止';
     $.ajax(
       {
         type:'POST',
