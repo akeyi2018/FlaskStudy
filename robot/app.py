@@ -25,7 +25,7 @@ def rapper(move_direction):
 
 @app.route('/', methods=['GET'])
 def index():
-    return render_template('remote_contol.html')
+    return render_template('remote_control.html')
 
 @app.route('/stop', methods=['POST'])
 def stop():
