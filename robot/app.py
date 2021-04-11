@@ -17,7 +17,7 @@ def rapper(direction):
     while True:
         if control.get_robot_info()['status'] == 0:
             move_body.run2(direction, 0.1)
-            move_body.run2(0, 0.01)
+            # move_body.run2(0, 0.01)
         else:
             move_body.run2(0, 0.01)
             break
