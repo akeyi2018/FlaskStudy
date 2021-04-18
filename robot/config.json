@@ -12,8 +12,8 @@
     "Robot": [6,13,19,26],
     "distance_sensor":
     {
-        "echo": 27, 
-        "trigger": 17,
+        "echo": 17, 
+        "trigger": 27,
         "range_distance": 0.1,
         "max_distance": 1.0,
         "signal_led": 5
