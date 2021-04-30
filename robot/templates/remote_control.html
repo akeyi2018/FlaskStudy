@@ -5,51 +5,24 @@
   <meta charset="utf-8">
   <title>Robot</title>
   <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+  <link rel="stylesheet" href="{{url_for('static', filename='apply.css')}}">
   <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
   <script src="{{url_for('static', filename='index.js')}}"></script>
-  <style>
-    
-    #main{
-      width:480px;height:750px;
-    }
-
-    .btn{
-      display: flex;
-      justify-content: space-evenly;
-    }
-
-    #front, #back, #left, #right 
-    {
-      width:200px;height:100px;font-size:50px;background-color: green;color: honeydew;
-      margin: 20px;
-      margin-bottom: 30px;
-    }
-    #stop{
-      width:200px;height:100px;font-size:50px;color:#ff0000;
-      margin: 20px;
-      margin-left: 150px;
-    }
-    #info{
-      margin-top: 0px;
-      width:100px;height:60px;font-size:30px;
-      padding-left: 200px;
-    }
-  </style>
 </head>
  
 <body>
-
   <div id="main" class="btn">
-    <pre>
+    <pre class ="ctl">
       <h3 id="title"><center>ロボットリモート操作</center></h3><hr>
       <button id="front">前進</button><button id="back">後退</button>
       <button id="left">左折</button><button id="right">右折</button>
       <button id="stop">停止</button>
+      <a href="/capture/" target='blank'><button id='capture'>写真撮影</button></a>
       <h3 id="info">status:</h3><hr>
-      <button id='settings'>各種設定</button><button id='camera'>写真撮影</button><button id='search'>探索</button>
-      <button>バッテリー使用率</button><button>充電</button>
     </pre>
   </div>
-  <h5>©copyright 2020- IoT研究会</h5>
+  <button id='settings'>各種設定</button><button id='search'>探索</button>
+  <button>バッテリー使用率</button><button>充電</button>
+  <h3>©copyright 2020- IoT研究会</h5>
 </body>
 </html>
