@@ -23,6 +23,40 @@ window.onload = () => {
     $right_elem.onmousedown = () => { 
         stop(0);
     };
+
+    // var $capture_elem = document.getElementById("capture");
+    // var $info = document.getElementById('info');
+    // $capture_elem.onmousedown = () => {
+    //     capture();
+    //     $info.innerHTML = '撮影終了';
+    // }
+
+    var $check_elem = document.getElementById("checkphoto");
+    $check_elem.onmousedown = () => {
+        var $info = document.getElementById('info');
+        $info.innerHTML = '確認';
+        checkphoto();
+    }
+}
+
+function checkphoto() {
+    $.ajax(
+        {
+          type:'GET',
+          url: '/check',
+          data: '',
+          contentType: 'image/png'
+    });
+}
+
+function capture() {
+    $.ajax(
+        {
+          type:'GET',
+          url: '/capture',
+          data: '',
+          contentType: 'application/json'
+        });
 }
  
 function stop(direction) {
