@@ -11,15 +11,16 @@
 </head>
  
 <body>
-  <div id="main" class="btn">
+  <div id="main">
     <pre class ="ctl">
-      <h3 id="title"><center>ロボットリモート操作</center></h3><hr>
+      <h3 id="title">ロボットリモート操作</h3><hr>
+      <img id="cap" src="{{ url_for('video_feed') }}">
       <button id="front">前進</button><button id="back">後退</button>
       <button id="left">左折</button><button id="right">右折</button>
       <button id="stop">停止</button>
-      <a href="/capture/" target='blank'><button id='capture'>写真撮影</button></a>
       <h3 id="info">status:</h3><hr>
     </pre>
+    
   </div>
   <button id='settings'>各種設定</button><button id='search'>探索</button>
   <button>バッテリー使用率</button><button>充電</button>

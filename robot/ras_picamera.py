@@ -9,11 +9,12 @@ class remote_camera:
         self.photofile = datetime.datetime.now().strftime("image_%Y_%m_%d_%H_%M_%S.png") 
         self.fullpath = os.path.join(os.getcwd(), 'static/img', self.photofile)
         self.target_folder = os.path.join(os.getcwd(), 'static/img/*.png')
+        
     def take_photo(self):        
         with picamera.PiCamera() as camera:
             camera.resolution = (1024, 768)
             camera.start_preview()
-            sleep(2)
+            sleep(1)
             camera.capture(self.fullpath, resize=(320, 240))
             camera.stop_preview()
 
