@@ -1,29 +1,24 @@
   #main{
     width: 480px;
-    height: 545px;
+    height: 720px;
   }
-
-  #title{
-    margin-top: 0px;
-    margin-bottom: 0px;
-  }
-  .btn{
-    display: flex;
-    justify-content: space-evenly;
-  }
-
   .ctl{
-    padding-left: 122px;
+    padding-left: 10px;
     margin-right: 11px;
     height: 538px;
     padding-right: 10px;
   }
 
-  #front, #back, #left, #right, #capture, #checkphoto
+  #title{
+    padding-left: 99px;
+  }
+
+  #front, #back, #left, #right, #capture
   {
     width:120px;height:80px;font-size:20px;background-color: green;color: honeydew;
     margin: 10px;
-    margin-bottom: 0px;
+    margin-bottom: 10px;
+    margin-left: 28px;
   }
   #stop 
   {
@@ -32,13 +27,13 @@
     font-size: 20px;
     color: #ff0000;
     margin: 10px;
-    margin-left: 10px;
-    margin-left: 60px;
+    margin-left: 95px;
   }
 
   #cap
   {
-    width:320px;height:240px;
+    width: 320px;
+    height: 240px;
     margin-left: 10px;
   }
   

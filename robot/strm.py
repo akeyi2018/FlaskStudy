@@ -1,30 +1,35 @@
-from flask import render_template, Flask, Response
-from io import BytesIO
-from time import sleep
-from picamera import PiCamera
-from PIL import Image
+import cv2
+from flask import Flask, render_template, Response
+
+from camera import Camera
 
 app = Flask(__name__)
 
-def take_photo_2():
-    stream = BytesIO()
-    camera = PiCamera()
-    camera.start_preview()
-    sleep(2)
-    camera.capture(stream, format='jpeg')
-    # "Rewind" the stream to the beginning so we can read its content
-    stream.seek(0)
-    image = Image.open(stream)
 
-@app.route('/video_feed')
-def video_feed():
-   #imgタグに埋め込まれるResponseオブジェクトを返す
-   return Response(take_photo_2(), mimetype='multipart/x-mixed-replace; boundary=frame')
-
-@app.route('/')
+@app.route("/")
 def index():
-   user = {'username': 'FZ50'}
-   return render_template('index.html', title='home', user=user)
+    return "Hello World!"
 
-if __name__ == '__main__':
-    app.run(debug=True, host="0.0.0.0", port=5000)
+@app.route("/stream")
+def stream():
+    return render_template("index.html")
+
+def gen(camera):
+    while True:
+        frame = camera.get_frame()
+
+        if frame is not None:
+            yield (b"--frame\r\n"
+                b"Content-Type: image/jpeg\r\n\r\n" + frame.tobytes() + b"\r\n")
+        else:
+            print("frame is none")
+
+@app.route("/video_feed")
+def video_feed():
+    return Response(gen(Camera()),
+            mimetype="multipart/x-mixed-replace; boundary=frame")
+
+
+if __name__ == "__main__":
+    app.debug = True
+    app.run(host="0.0.0.0", port=5000)

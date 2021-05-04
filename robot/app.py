@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from flask import Flask, render_template, request, redirect, url_for, jsonify, send_file
+from flask import Flask, render_template, request, redirect, url_for, jsonify, send_file, Response
 from controller import robot_controller, MoveBody, SensingDistance
 import os
 import json
@@ -8,6 +8,7 @@ import picamera
 import datetime
 from glob import glob 
 from ras_picamera import remote_camera
+from camera import Camera
 
 app = Flask(__name__)
 
@@ -18,6 +19,16 @@ move_body = MoveBody(control)
 sensor = SensingDistance(control)
 sensor.run()
 camera = remote_camera()
+
+def gen(camera):
+    while True:
+        frame = camera.get_frame()
+
+        if frame is not None:
+            yield (b"--frame\r\n"
+                b"Content-Type: image/jpeg\r\n\r\n" + frame.tobytes() + b"\r\n")
+        else:
+            print("frame is none")
 
 def rapper(move_direction):
     control.set_robot_status(config['STATUS_ZERO'])
@@ -30,24 +41,23 @@ def rapper(move_direction):
 
 @app.route('/', methods=['GET'])
 def index():
-    return render_template('remote_control.html', img_file='')
+    return render_template('remote_control.html')
 
 @app.route('/stop', methods=['POST'])
 def stop():
     control.set_robot_status(config['STATUS_ONE'])
     return '200'
 
-@app.route('/check', methods=['GET'])
-def check_image():
-    
-    return send_file(fn)
-
 @app.route('/capture/')
 def show_image():
     camera.take_photo()
     fn = camera.get_latest_modified_file_path()
-    print(fn)
-    return send_file(fn)
+    return send_file(fn, mimetype='image/png')
+
+@app.route("/video_feed")
+def video_feed():
+    return Response(gen(Camera()),
+            mimetype="multipart/x-mixed-replace; boundary=frame")
 
 @app.route('/move', methods=['POST'])
 def move():

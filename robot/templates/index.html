@@ -1,10 +1,11 @@
 <html>
    <head>
-       <title>{{ title }} - FZ5050</title>
+       <title>Live</title>
    </head>
    <body>
-       <h1>Hello, {{ user.username }}!</h1>
+       <h1>Hello</h1>
        <h3>Live Streaming</h3>
-       <img src="{{ url_for('static', filename='image.jpg') }}">
+       <img src="{{ url_for('video_feed') }}">
+       <!-- <a href="/capture/" target='blank'><button id='capture'>写真撮影</button></a> -->
    </body>
 </html>
