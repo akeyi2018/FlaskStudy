@@ -14,7 +14,7 @@ def qr_test():
     m1_jal_ct = 0
     m1_ana_ct = 0
     m2_jal_ct = 0
-    m2_ana_ct = 0
+    null_ct = 0
     for r1,r2 in zip(sr1,sr2):
         # JAL
         if (pd.notna(r1)) & (r1 == key_1) & (pd.isna(r2)):
@@ -32,13 +32,14 @@ def qr_test():
             # res = f'{r1},{r2}'
             # print(res)
             m2_jal_ct += 1
-        # ANA
-        if (pd.notna(r2)) & (r2 == key_2) & (pd.notna(r1)):
+
+        # null & null
+        if (pd.isna(r2)) & (pd.isna(r1)):
             # res = f'{r1},{r2}'
             # print(res)
-            m2_ana_ct += 1
+            null_ct += 1
 
-    res = f'M1 JAL Count:{m1_jal_ct}, M1 ANA Count:{m1_ana_ct}, M2 JAL Count:{m2_jal_ct}, M2 ANA Count:{m2_ana_ct}'
+    res = f'M1 JAL Count:{m1_jal_ct}, M1 ANA Count:{m1_ana_ct}, M2 JAL Count:{m2_jal_ct}, null Count:{null_ct}'
     print(res)
 
 qr_test()
