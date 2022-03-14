@@ -1,75 +1,10 @@
-import requests
-import re
-import urllib3
-from bs4 import BeautifulSoup
+import weakref
 
-urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-
-class Weather:
-
-    def __init__(self, prefectureLink):
-
-        self.prefectureLink = prefectureLink
-
-        res = requests.get("https://www.jma.go.jp/bosai/forecast/" + self.prefectureLink, verify=False)
-        soup = BeautifulSoup(res.text,"html.parser")
-
-        self.title = soup.find("caption").text
-        self.days = soup.find("table", {"id": "infotablefont"}).find_all("tr")[0].find_all("th")
-        self.weatherinfo = soup.find("table", {"id": "infotablefont"}).find_all("tr")[1].find_all("td")
-        self.max_temp = soup.find("table", {"id": "infotablefont"}).find_all("tr")[4].find_all("td")
-        self.min_temp = soup.find("table", {"id": "infotablefont"}).find_all("tr")[5].find_all("td")
-        self.hiduke = ['日付','最高','最低','／']
-
-    def getInfo(self):
-
-        weather = []
-        weeklist = []
-
-        maxtemplist = []
-        for maxtemp in self.max_temp:
-            maxtemp = maxtemp.text
-
-            if self.hiduke[1] not in maxtemp:
-                maxtemp = maxtemp.replace('\n', '').replace('\t', '').replace('(', '{').replace(')', '}')
-                maxtemp = re.sub('{.*?}', '', maxtemp)
-
-                if self.hiduke[3] in maxtemp:
-                    maxtemp = None
-                else:
-                    maxtemp = int(maxtemp)
-
-                maxtemplist.append(maxtemp)
-
-        mintemplist = []
-        for mintemp in self.min_temp:
-            mintemp = mintemp.text
-
-            if self.hiduke[2] not in mintemp:
-                mintemp = mintemp.replace('\n', '').replace('\t', '').replace('(', '{').replace(')', '}')
-                mintemp = re.sub('{.*?}', '', mintemp)
-
-                if self.hiduke[3] in mintemp:
-                    mintemp = ""
-                else:
-                    mintemp = int(mintemp)
-
-                mintemplist.append(mintemp)
-
-        weather.append(self.title)
-        weather.append([infotemp.text.replace('\n','') for infotemp in self.weatherinfo[0:7]])
-        weather.append([dat.text[:-1] + '(' + dat.text[-1] + ')' for dat in self.days if self.hiduke[0] not in dat.text])
-        weather.append(maxtemplist)
-        weather.append(mintemplist)
-
-        return weather
 
 class prefecture:
 
     def __init__(self):
-        #各府県のデータを取得する
-        res1 = requests.get("https://www.jma.go.jp/jp/week/", verify=False)
-        self.soup1 = BeautifulSoup(res1.text, "html.parser")
+        pass
 
     def getPrefecture(self):
         da = {
@@ -79,11 +14,37 @@ class prefecture:
         }
         return da
 
+class Weather(prefecture):
+
+    def __init__(self, pref):
+
+        self.pre_list = self.getPrefecture()
+        self.num = self.pre_list[pref]
+        self.title = 'グラフサンプル'
+        self.labels = [2017,2018,2019,2020,2021]
+        self.data_01 = [30,25,28,21,20,12]
+        self.data_02 = [10,15,20,10,12,18]
+        self.data_03 = [3, 4, 2, 4, 2]
+
+    def addInfo(self):
+        weather = [self.labels, self.data_01, self.data_02]
+        return weather
+    
+    def add2dInfo(self):
+        w2d = []
+        weather.append(self.data_01)
+        weather.append(self.data_02)
+
+
+
+
 if __name__ == "__main__":
 
-    wt = prefecture()
-    pre = wt.getPrefecture()
-    print(pre)
+    wk = Weather('東京都')
+    print(wk.addInfo())
 
-    wk = Weather(pre)
-    # print(wk.getInfo()[0])
+    # wp = prefecture()
+    # pref = {}
+    # for pre in wp.getPrefecture():
+    #     print(pre)
+    # print(pref)

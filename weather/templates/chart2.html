@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+  </head>
+  <body>
+
+    <div class="container">
+        <center><h3 class="text-muted">天気予報</h3></center>
+        <form action = "/s" method="POST">
+        <select class="text-muted" name="pref" style="font-size:14px;">
+          {% for key, value in preflink.items() %}
+            {% if selectedval == key %}
+               <option value = "{{key}}" selected>{{key}}</option>
+            {% else %}
+               <option value = "{{key}}">{{key}}</option>
+            {% endif %}
+          {% endfor %}
+        </select>
+        <input name = "linkPref" type= "submit"></input>
+        </form>
+        <br>
+        <center><h4 class="text-muted">{{title}}</h4></center>
+        <canvas id="myLineChart"></canvas>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+        <script>
+
+        var ctx = document.getElementById("myLineChart");
+        var myLineChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: [{% for dat in yearInfo %}
+                 "{{ dat }}",
+                 {% endfor %}],
+            datasets: [
+            {
+              spanGaps: true,
+              label: '最高気温(度）',
+              data: [{% for tp in highdata %}
+                 {{tp}},
+                 {% endfor %}],
+              borderColor: "rgba(255,0,0,1)",
+              backgroundColor: "rgba(0,0,0,0)"
+            },
+           {
+            label: '最低気温(度）',
+            data: [{% for tp in lowtemp %}
+                 {{tp}},
+                 {% endfor %}],
+             borderColor: "rgba(0,0,255,1)",
+             backgroundColor: "rgba(0,0,0,0)"
+             }
+            ],
+           },
+          options: {
+          title: {
+          display: true,
+          },
+          scales: {
+          yAxes: [{
+          ticks: {
+            suggestedMin: 0,
+            stepSize: 5,
+            callback: function(value, index, values){
+              return  value +  '度'
+            }
+          }
+        }]
+      },
+    }
+  });
+  </script>
+  <h5>出典：気象庁</h5>
+  </div>
+  </body>
+</html>
