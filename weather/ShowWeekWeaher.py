@@ -7,25 +7,20 @@ app = Flask(__name__)
 #各府県情報を取得する
 def getpref():
     wp = prefecture()
-    pref = {}
-    for pre in wp.getPrefecture():
-        pref[str(pre[0])] = str(pre[1])
+    return wp.getPrefecture()
 
-    return pref
-
-@app.route('/', methods=['GET','POST'])
+@app.route('/s', methods=['GET','POST'])
 def showgraph():
-
-    wt = Weather("319.html").getInfo()
-    selectval = "319.html"
+    selectval = "千葉県"
+    wt = Weather(selectval).addInfo()
     if request.method == 'POST':
-        wt = Weather(str(request.form["pref"])).getInfo()
+        print(str(request.form["pref"]))
+        wt = Weather(str(request.form["pref"])).addInfo()
         selectval = str(request.form["pref"])
-
-    return render_template('chart.html', selectedval = selectval,
-                           preflink=getpref(),
-                           mes=str(wt[0]), message=wt[2], weatherinfo=wt[1],
-                           temp=wt[3], lowtemp=wt[4])
+        # print(wt[1])
+    # _が使えない
+    print(wt)
+    return render_template('chart.html', da1 = wt)
 
 if __name__ == "__main__":
     app.run(debug=True, host='0.0.0.0')
