@@ -11,7 +11,7 @@ class Weather:
 
         self.prefectureLink = prefectureLink
 
-        res = requests.get("https://www.jma.go.jp/jp/week/" + self.prefectureLink, verify=False)
+        res = requests.get("https://www.jma.go.jp/bosai/forecast/" + self.prefectureLink, verify=False)
         soup = BeautifulSoup(res.text,"html.parser")
 
         self.title = soup.find("caption").text
@@ -72,12 +72,18 @@ class prefecture:
         self.soup1 = BeautifulSoup(res1.text, "html.parser")
 
     def getPrefecture(self):
-        return [[pre.get("value"), pre.text] for pre in self.soup1.find_all("option")[1:]]
+        da = {
+            '千葉県': 1,
+            '東京都': 2,
+            '埼玉県': 3
+        }
+        return da
 
 if __name__ == "__main__":
 
     wt = prefecture()
-    pre = wt.getPrefecture()[20][0]
+    pre = wt.getPrefecture()
     print(pre)
+
     wk = Weather(pre)
-    print(wk.getInfo()[0])
+    # print(wk.getInfo()[0])

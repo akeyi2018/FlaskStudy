@@ -13,7 +13,7 @@ def getpref():
 
     return pref
 
-@app.route('/showweekweather', methods=['GET','POST'])
+@app.route('/', methods=['GET','POST'])
 def showgraph():
 
     wt = Weather("319.html").getInfo()
