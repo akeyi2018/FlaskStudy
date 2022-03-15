@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+    
+    <title>WTF Form</title>
+</head>
+<body>
+    <form method="POST" action="/">
+        <p>
+            {{ form.name.label }} {{ form.name(size=20) }}</p>
+            {{ form.inputdate.label }} {{form.inputdate}}
+            {{ form.submit()}} 
+        <!-- <input type="submit" value="Go"> -->
+    </form>
+    <p>{{name}}</p>
+</body>
