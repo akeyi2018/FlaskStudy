@@ -8,14 +8,33 @@
     <title>Chart.js</title>
 </head>
 <body>
+    <script>
+        let da = {{da1 | tojson}};
+    </script>
+        <form action = "/s" method="POST">
+        <select class="text-muted" name="pref" style="font-size:14px;">
+          {% for key, value in preflink.items() %}
+            {% if selectedval == key %}
+               <option value = "{{key}}" selected>{{key}}</option>
+            {% else %}
+               <option value = "{{key}}">{{key}}</option>
+            {% endif %}
+          {% endfor %}
+        </select>
+        <input name = "linkPref" type= "submit"></input>
+        </form>
+        <center><h3 class="text-muted">{{da1[0]}}</h3></center>
+        <br>
     <div style="width:50%;">
         <canvas id="myChart" width="200px" height="200px"></canvas>
-        <script>
-          let da = {{da1 | tojson}};
-        </script>
-        <script 
-        type="text/javascript" src="{{url_for('static', filename='js/main.js')}}"></script>
+        <script type="text/javascript" src="{{url_for('static', filename='js/main.js')}}"></script>
     </div>
+
+    <form action = '/u' method="POST">
+        <label>開始日<input type="date" name='from' value="2017-04-01"></label>
+        <label>締切日<input type="date" name="to"></label>
+        <button type="submit" class="btn btn-primary">送信</button>
+    </form>
     
 </body>
 </html>
