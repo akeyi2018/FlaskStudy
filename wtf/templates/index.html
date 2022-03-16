@@ -14,11 +14,11 @@
     {{ form.submit()}}
     </form>
     <p>
-    {% if start_date %}
-    start date: {{start_date}}
+    {% if form.start_date.data %}
+    start date: {{form.start_date.data}}
     {% endif %}
-    {% if end_date %}
-    end date: {{end_date}}
+    {% if form.end_date.data %}
+    end date: {{form.end_date.data}}
     {% endif %}
     </p>
 </body>
