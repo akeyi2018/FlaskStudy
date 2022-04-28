@@ -19,6 +19,7 @@ class send_email:
 
     def run(self):
         server = smtplib.SMTP(settings['host'], settings['port'])
+        print(server)
         server.ehlo()
         server.starttls()
         server.ehlo()
