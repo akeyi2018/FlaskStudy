@@ -1,25 +1,45 @@
-// console.info(da);
-const ctx = document.getElementById('myChart');
+var canvas = document.getElementById('myChart');
+        new Chart(canvas, {
+            type: 'bar',
+            data: {
+                datasets: [
+                    {
+                        label: '売上',
+                        data: [100000, 7000000, 3000000]
+                    }
+                ],
+                labels: ['前々月', '前月', '今月']
+            },
+            options: {
+                scales: {
+                    xAxes: [
+                        {
+                            ticks: {}
+                        }
+                    ],
+                    yAxes: [
+                        {
+                            ticks: {
+                                min: 0,
+                                max: 10000000,
+                                stepSize: 5000000,
+                                callback: function(label, index, labels) {
 
-const chart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: da[1],
-        datasets: [{
-            label: 'data_01',
-            data: da[2],
-            borderColor: "rgba(255,255,0,1)",
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)'
-            ],
-        },{
-            label:'data_02',
-            data: da[3],
-            borderColor: "rgba(0,0,255,1)",
-            backgroundColor: [
-                'rgba(25, 0, 132, 0.2)'
-            ],
-            borderWidth: 1
-        }]
-    }
-})
+                                    return label.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') +' 円';
+
+                                }
+                            }
+                        }
+                    ]
+                },
+                tooltips: {
+                    callbacks: {
+                        label: function(tooltipItem, data){
+                            let l1 = tooltipItem.yLabel.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                            let l2 = da[1][tooltipItem.index] + '%';
+                            return l2;
+                        }
+                    }
+                }
+            }
+        });
