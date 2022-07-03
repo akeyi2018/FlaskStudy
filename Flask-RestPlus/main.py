@@ -6,6 +6,7 @@ from test_api_01 import api_001
 app = Flask(__name__)
 
 app.config['SECRET_KEY'] = 'test'
+
 app.config.SWAGGER_SUPPORTED_SUBMIT_METHODS = ["get", "post"]
 app.config.SWAGGER_UI_REQUEST_DURATION = True
 app.config.SWAGGER_UI_JSONEDITOR = True
