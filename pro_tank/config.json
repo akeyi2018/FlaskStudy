@@ -1,0 +1,13 @@
+{
+    "settings":
+    {
+        "direction": 0,
+        "moving_time": 0.1,
+        "stop_time": 0.01,
+        "STATUS_ZERO": 0,
+        "STATUS_ONE": 1,
+        "STOP_ROBOT": 0,
+        "running": 0
+    },
+    "Robot": [6,13,19,26]
+}
