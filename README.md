@@ -15,6 +15,8 @@ $ cd projectname
 $ . venv/bin/activate
 (venv) $ git clone http://github.com/akeyi2018/FlaskStudy
 (venv) $ cd FlaskStudy
+(venv) $ cd pip install flask
+------  ここまで　-------
 (venv) $ pip install bs4
 ```  
 
