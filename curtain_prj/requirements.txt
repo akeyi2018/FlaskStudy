@@ -5,7 +5,7 @@ Jinja2==2.11.2
 pyephem==3.7.7.0
 requests==2.24.0
 urllib3==1.26.5
-Werkzeug==1.0.1
+Werkzeug==2.2.3
 click==7.1.2
 gpiozero==1.5.1
 schedule==0.6.0
