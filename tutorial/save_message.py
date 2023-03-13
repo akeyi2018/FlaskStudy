@@ -28,7 +28,7 @@ class Messager():
     # 追記（更新）
     def update_data(self):
         li = [self.dt_now, self.target, self.author, self.message]
-        with open(self.messager_path, 'a') as f:
+        with open(self.messager_path, 'a', newline='') as f:
             w = csv.writer(f)
             w.writerow(li)
     # 読み込み
@@ -50,7 +50,7 @@ class Messager():
             self.create_new()
 
 if __name__ == "__main__":
-    ins = Messager(target='KIX-D',message='確認しました。')
+    ins = Messager(target='KIX-D',message='確認しました。2')
     # ins.run()
     # 登録
     ins.run()

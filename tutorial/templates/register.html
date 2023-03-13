@@ -7,8 +7,8 @@
     {% from "formhelpers.html" import render_field %}
     <form method="POST">
       {{ form.csrf_token }}
-      {{ render_field(form.name) }}
-      {{ render_field(form.comment) }}
+      {{ form.comment()}}
+      <br>
       {{ form.submit() }}
     </form>
   </body>
