@@ -26,7 +26,7 @@ class Messager():
             w.writerow(li)
 
     # 追記（更新）
-    def update_data(self, message):
+    def update_data(self):
         li = [self.dt_now, self.target, self.author, self.message]
         with open(self.messager_path, 'a') as f:
             w = csv.writer(f)
@@ -45,7 +45,7 @@ class Messager():
 
     def run(self):
         if os.path.exists(self.messager_path):
-            self.update_data(self.message)
+            self.update_data()
         else:
             self.create_new()
 
