@@ -4,12 +4,23 @@
     <title>Form</title>
   </head>
   <body>
-    {% from "formhelpers.html" import render_field %}
-    <form method="POST">
-      {{ form.csrf_token }}
-      {{ form.comment()}}
-      <br>
-      {{ form.submit() }}
+    <form method="POST" action="{{url_for('.save_comment', num=0)}}">
+      {% if d[0] %}
+      <textarea name="comment" rows="20" cols="60" style="text-align:left;;margin-left:auto;">{{d[0]}}
+      </textarea>
+      {% else %}
+      <textarea id="comment" rows="20" cols="60" style="text-align:left;margin-left:auto;"></textarea>
+      {% endif %}
+      <input type="submit" value="送信"><br>
+    </form>
+    <form method="POST" action="{{url_for('.save_comment', num=1)}}">
+      {% if d[1] %}
+      <textarea name="comment" rows="20" cols="60" style="text-align:left;;margin-left:auto;">{{d[1]}}
+      </textarea>
+      {% else %}
+      <textarea id="comment" rows="20" cols="60" style="text-align:left;margin-left:auto;"></textarea>
+      {% endif %}
+      <input type="submit" value="送信"><br>
     </form>
   </body>
 </html>
