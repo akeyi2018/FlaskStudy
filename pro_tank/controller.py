@@ -1,9 +1,6 @@
 import RPi.GPIO as GPIO
 from time import sleep
 import json, os
-from gpiozero import DistanceSensor, LED
-from signal import pause
-from flask import redirect, url_for
 
 class robot_controller:
     def __init__(self, path):
@@ -59,41 +56,9 @@ class MoveBody:
             GPIO.output(pin, val)
         sleep(tm)
 
-class SensingDistance:
-    def __init__(self, robot):
-        self.robot = robot
-        self.sensor_info = self.robot.get_config()['distance_sensor']
-        self.echo = self.sensor_info['echo']
-        self.trigger = self.sensor_info['trigger']
-        self.signal_led = self.sensor_info['signal_led']
-        self.range_distance = self.sensor_info['range_distance']
-        self.MAX_DISTANCE = self.sensor_info['max_distance'] 
-        self.ROBOT_STATUS_ONE = 1
-        self.ROBOT_STATUS_ZERO = 0
-        self.led = LED(self.signal_led)
-        self.sensor = DistanceSensor(
-            echo=self.echo, 
-            trigger=self.trigger,
-            max_distance= self.MAX_DISTANCE, 
-            threshold_distance=self.range_distance
-            )
-    def change_robot_status_one(self):
-        self.robot.set_robot_status(self.ROBOT_STATUS_ONE)
-        self.led.on()
-
-    def change_robot_status_zero(self):
-        self.robot.set_robot_status(self.ROBOT_STATUS_ZERO)
-        self.led.off()
-
-    def run(self):
-        self.sensor.when_in_range = self.change_robot_status_one
-        self.sensor.when_out_of_range = self.change_robot_status_zero
-
 if __name__ == '__main__':
     robot = robot_controller(os.path.dirname(os.path.realpath(__file__)))
     move_body = MoveBody(robot)
-    s = SensingDistance(robot)
-    s.run()
     while True:
         if robot.get_robot_info()['status'] == 0:
             move_body.run(1, 1)

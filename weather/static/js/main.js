@@ -5,7 +5,7 @@ var canvas = document.getElementById('myChart');
                 datasets: [
                     {
                         label: '売上',
-                        data: [100000, 7000000, 3000000]
+                        data: [1000, 7000, 3000]
                     }
                 ],
                 labels: ['前々月', '前月', '今月']
@@ -21,8 +21,8 @@ var canvas = document.getElementById('myChart');
                         {
                             ticks: {
                                 min: 0,
-                                max: 10000000,
-                                stepSize: 5000000,
+                                max: 1000,
+                                stepSize: 50,
                                 callback: function(label, index, labels) {
 
                                     return label.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') +' 円';

@@ -17,6 +17,7 @@ def showgraph():
         # print(str(request.form["pref"]))
         wt = Weather(str(request.form["pref"])).addInfo()
         selectval = str(request.form["pref"])
+        print(wt)
     # _が使えない
     return render_template('chart.html', da1 = wt, preflink = getpref(), selectedval = selectval)
 
