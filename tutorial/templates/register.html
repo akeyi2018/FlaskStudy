@@ -2,25 +2,27 @@
   <head>
     <meta charset=“UTF-8“ />
     <title>Form</title>
+    <script src="{{url_for('.static', filename='comment.js')}}"></script>
   </head>
   <body>
-    <form method="POST" action="{{url_for('.save_comment', num=0)}}">
+    <form method="POST">
       {% if d[0] %}
-      <textarea name="comment" rows="20" cols="60" style="text-align:left;;margin-left:auto;">{{d[0]}}
+      <textarea name="comment" id="c_01" rows="20" cols="60" style="text-align:left;;margin-left:auto;">{{d[0]}}
       </textarea>
       {% else %}
       <textarea id="comment" rows="20" cols="60" style="text-align:left;margin-left:auto;"></textarea>
       {% endif %}
-      <input type="submit" value="送信"><br>
+      <input onclick="main_function(0, this.value)" type="button" id="btn" value="編集開始"></form>
     </form>
-    <form method="POST" action="{{url_for('.save_comment', num=1)}}">
+  </form>
+    <form method="POST" action="{{url_for('.save_comment', num=1, k=1)}}">
       {% if d[1] %}
       <textarea name="comment" rows="20" cols="60" style="text-align:left;;margin-left:auto;">{{d[1]}}
       </textarea>
       {% else %}
       <textarea id="comment" rows="20" cols="60" style="text-align:left;margin-left:auto;"></textarea>
       {% endif %}
-      <input type="submit" value="送信"><br>
+      <input onclick="main_function(1, this.value)" type="button" id="btn" value="編集開始"></form>
     </form>
   </body>
 </html>
