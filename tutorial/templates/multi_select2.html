@@ -1,0 +1,27 @@
+<html lang=“ja”>
+  <head>
+    <meta charset=“UTF-8“ />
+    <title>Form</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <link rel="stylesheet" href="/static/table.css">
+  </head>
+  <body style="background: #dae5ee;">
+      <h4 class="page-title">KIX: vs last year</h4>
+      <div class="page-category">Page description</div>
+      <form method="POST" action="/comment/{{user_name}}">
+        <h3>{{form.stores}}</h3>
+        <h3>{{form.category}}</h3>
+				&nbsp;{{ form.submit() }}</h3>
+			</form>
+      <script>
+        $(function () {
+            $('select').select2({
+              width: 600,
+              dropdownCssClass: "custom-container",
+            });
+        });
+        </script>
+  </body>
+</html>

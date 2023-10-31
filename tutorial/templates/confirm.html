@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang=“ja”>
+  <head>
+    <meta charset=“UTF-8“ />
+    <title>confirm</title>
+  </head>
+  <body>
+    <h1>確認内容</h1>
+    <ul>
+      <li>名前：{{ name }}</li>
+      <li>コメント：{{ comment }}</li>
+      <form action="/confirm_test" method="post"> 
+        <input type="hidden" id="userInput" name="userInput"> 
+        <button type="submit" name="free_button" value="free_button" onClick="confirmBooking('{{ name }}')">登録</button> 
+      </form>
+      <script>
+        function confirmBooking(elem) {
+            if(confirm('do you want to registe this user?') == true) {
+                alert("registed: " + elem); 
+                document.getElementById("userInput").value = "True";
+            }
+            else { 
+                 document.getElementById("userInput").value = "False";
+                 return 0;
+            }          
+        }
+    </script>
+    </ul>
+  </body>
+</html>

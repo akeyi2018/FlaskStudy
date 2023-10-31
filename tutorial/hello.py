@@ -1,4 +1,4 @@
-from flask import Flask, escape, url_for, request
+from flask import Flask, escape, url_for, request, render_template
 app = Flask(__name__)
 
 @app.route('/')
@@ -22,7 +22,13 @@ def show_the_post_form():
 
 @app.route('/hello')
 def hello():
-    return 'Hello, World! 1234434343'
+    return render_template('index.html')
+
+@app.route('/next_func/<user_name>')
+def next_func(user_name):
+    return "next func result "+ user_name
+
+
 
 @app.route('/user/<username>')
 def show_user_profile(username):

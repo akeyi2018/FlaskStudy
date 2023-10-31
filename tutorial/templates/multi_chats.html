@@ -1,0 +1,81 @@
+<html lang=“ja”>
+  <head>
+    <meta charset=“UTF-8“ />
+    <title>Form</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="./static/table.css"
+  </head>
+  <body style="background: #dae5ee;">
+      <h4 class="page-title">KIX: vs last year</h4>
+      <div class="page-category">Page description</div>
+      <form method="POST" action="/comment2">
+				<h4>{{ form.start_month.label }} {{ form.start_month }}
+        {{form.stores}}
+				&nbsp;{{ form.submit() }}</h4>
+     </form>
+     <script>
+      //チェックボックス要素の取得
+      let chk = document.querySelectorAll("input[type='checkbox']");
+      //テーブル要素の取得
+      let tbl = document.getElementsByClassName('table table-hover');
+      //グラフのタイトルを取得
+      let graph_title = document.getElementsByClassName("card-title");
+      //グラフの要素取得
+      let graph_body = document.getElementsByClassName("graph-body");
+      // console.log(graph_body);
+      for (let i = 0; i < chk.length; i++) {
+        chk[i].addEventListener('change', function() {
+            if (chk[i].checked){
+              tbl[i].style.display = "table-cell";
+              graph_title[i].style.display = "block";
+              graph_body[i].style.display = "block";
+            }else{
+              tbl[i].style.display = "none";
+              graph_title[i].style.display = "none";
+              graph_body[i].style.display = "none";
+            } 
+          });
+        }
+     </script> 
+      <div id="tb01">
+      <table border="1" class="table table-hover" id="MonthlyTable_100">
+        <thead> <tr> <th scope="col">Area</th> 
+         <th scope="col">Store name</th> <th scope="col">売上</th> </tr> </thead> <tbody> <tr>
+            <td>KIX T1 North Wing Airside INT 2F</td> <td>A店</td> <td>1000</td> 
+           </tr></tbody> </table></div>
+      <div id="store-gr" class="card-title">A店</div>
+           <div class="graph-body">
+             <canvas id="myChart_4" width="400" height="350">
+               <script src="./static/chart_04.js"></script>
+             </canvas>
+           </div>
+      <div id="tb02">
+      <table border="1" class="table table-hover" id="MonthlyTable_101">
+        <thead> <tr> <th scope="col">Area</th> 
+         <th scope="col">Store name</th> <th scope="col">売上</th> </tr> </thead> <tbody> <tr>
+            <td>KIX T1 North Wing Airside INT 2F</td> <td>B店</td> <td>2000</td> 
+           </tr></tbody> </table>
+      </div>
+      <div id="store-gr" class="card-title">B店のグラフ</div>
+      <div class="graph-body">
+        <canvas id="myChart_1" width="400" height="350">
+        <script src="./static/chart_01.js"></script>
+      </canvas>
+      </div>
+      <div id="tb03">
+      <table border="1" class="table table-hover" id="MonthlyTable_102">
+        <thead> <tr> <th scope="col">Area</th> 
+         <th scope="col">Store name</th> <th scope="col">売上</th> </tr> </thead> <tbody> <tr>
+            <td>KIX T1 North Wing Airside INT 2F</td> <td>C店</td> <td>3000</td> 
+           </tr></tbody> </table>
+      </div>
+      <div id="store-gr" class="card-title">C店</div>
+      <div class="graph-body">
+        <canvas id="myChart_2" width="400" height="350">
+        <script src="./static/chart_02.js"></script>
+        </canvas>
+      </div>
+  </body>
+</html>

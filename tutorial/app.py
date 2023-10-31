@@ -1,3 +1,4 @@
+from waitress import serve
 from flask import Flask, redirect, render_template, url_for
 # Formクラス及び使用するフィールドをインポート
 from app2 import bp
@@ -19,4 +20,5 @@ def main():
 	return render_template('side.html', current_user=current_user)
 
 if __name__ == '__main__':
-  	app.run(debug=True)
+  	app.run(debug=True, host='0.0.0.0',port=8000)
+	# serve(app, host='0.0.0.0', port=80)

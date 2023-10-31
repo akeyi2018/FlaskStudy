@@ -50,6 +50,10 @@ def index(user_name):
 	t_z = ["Z", 50, 90]
 	t_k = ["K", 50, 90]
 
+	if request.method == 'POST':
+		t = form.multi.data
+		print(t)
+
 	return render_template('register4.html', form=form, d=ld, d_x=d_x, d_y=d_y, dd = zip(d_x,d_y), user_name=user_name,
 			table_dd=zip(t_x,t_y,t_z,t_k))
 
