@@ -1,6 +1,6 @@
 beautifulsoup4==4.9.1
 ephem==3.7.7.0
-Flask==1.1.2
+Flask==2.3.2
 Jinja2==2.11.2
 pyephem==3.7.7.0
 requests==2.24.0
