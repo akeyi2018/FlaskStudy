@@ -3,9 +3,10 @@ import pandas as pd
 from  datetime import datetime
 import os,csv
 import socket
+import json
 
 class Messager():
-    def __init__(self, target=0, author='admin', message='this is test message') -> None:
+    def __init__(self, target=0, author='admin', message='this is test message'):
         if socket.gethostname() == 'akeyi2021':
             self.message_folder = '.\message'
         self.messager_file = 'messager.csv'
@@ -23,22 +24,23 @@ class Messager():
         # m = self.message.replace('\r\n','&#13;')
         m = self.message
         out = [self.dt_now, self.target_list[self.target], self.author, m]
-        with open(self.messager_path, 'w', newline='', encoding='cp932') as f:
+        with open(self.messager_path, 'w', newline='', encoding='utf-8') as f:
             w = csv.writer(f)
             w.writerow(self.csv_col)
             w.writerow(out)
 
     # 追記（更新）
     def update_data(self):
-        # 既存のコメントを取得する
-        before_comments = self.read_data()[self.target]
+        # # 既存のコメントを取得する
+        # before_comments = self.read_data()[self.target]
         # 送信されたコメント
         after_comments = self.message.strip()
         # 既存＋送信されたコメント（更新差分）を取得する
-        update_comments = self.add_comment(before_comments, after_comments)
+        # update_comments = self.add_comment(before_comments, after_comments)
+        update_comments = after_comments
         # 書き出し
         out = [self.dt_now, self.target_list[self.target], self.author, update_comments]
-        with open(self.messager_path, 'a', newline='') as f:
+        with open(self.messager_path, 'a', newline='', encoding='utf-8') as f:
             w = csv.writer(f)
             w.writerow(out)
 
@@ -90,7 +92,6 @@ class Messager():
         res = '\n'.join(res)
         return res
     
-    # 削除
     def correct_comment(self, before_text, after_text):
         import difflib
         d = difflib.Differ()
@@ -104,7 +105,7 @@ class Messager():
             print(data)
             if data[0:1] not in ['+', '-', '?']:
                 res.append(data.replace('  ',''))
-            elif data[0:1] in ['+','?']:
+            elif data[0:1] in ['+']:
                 res.append(data.replace('+ ','').replace('? ',''))
             else:
                 pass
@@ -121,12 +122,85 @@ class Messager():
         else:
             self.create_new()
 
+class Comment_flg(Messager):
+    def __init__(self, target=0, author='admin', message='this is test message') -> None:
+        super().__init__(target, author, message)
+        self.write_flg = 'comment_flg.json'
+        self.user_flg = 'user_flg.json'
+        self.write_flg_path = os.path.join(os.getcwd(), self.message_folder, self.write_flg)
+        self.user_flg_path = os.path.join(os.getcwd(), self.message_folder, self.user_flg)
+        self.init_json_file()
+        self.init_user_file()
+
+    def init_json_file(self):
+        if os.path.exists(self.write_flg_path):
+            pass
+        else:
+            flg = {}
+            for li in self.target_list:
+                flg[li] = 0
+            with open(self.write_flg_path, 'w') as json_file:
+                json.dump(flg, json_file, indent=4)
+
+    def init_user_file(self):
+        if os.path.exists(self.user_flg_path):
+            pass
+        else:
+            flg = {}
+            for li in self.target_list:
+                flg[li] = ''
+            with open(self.user_flg_path, 'w') as json_file:
+                json.dump(flg, json_file, indent=4)
+    
+    def get_flg(self):
+        with open(self.write_flg_path, 'r') as json_file:
+            flg = json.load(json_file)[self.target_list[self.target]]
+        with open(self.user_flg_path, 'r') as json_file:
+            mail = json.load(json_file)[self.target_list[self.target]]
+        return flg, mail
+        
+
+    def update_flg(self, mail, val):
+        with open(self.write_flg_path, 'r') as json_file:
+            json_data = json.load(json_file)
+            json_data[self.target_list[self.target]] = val
+        with open(self.write_flg_path, 'w') as json_file:
+            json.dump(json_data, json_file, indent=4)
+
+        with open(self.user_flg_path, 'r') as json_file:
+            json_data = json.load(json_file)
+            json_data[self.target_list[self.target]] = mail
+        with open(self.user_flg_path, 'w') as json_file:
+            json.dump(json_data, json_file, indent=4)
+
+    def clear_all_flg(self):
+        flg = {}
+        for li in self.target_list:
+            flg[li] = 0
+        with open(self.write_flg_path, 'w') as json_file:
+            json.dump(flg, json_file, indent=4)
+
+class html_body():
+    def __init__(self) -> None:
+        if socket.gethostname() == 'akeyi2021':
+            self.message_folder = '.\message'
+        self.html_file = 'test.html'
+        self.html_path = os.path.join(os.getcwd(), self.message_folder, self.html_file)
+
+    def write(self, content):
+        with open(self.html_path, 'w') as f:
+            for c in content:
+                f.writelines(str(c))
+        
+
 if __name__ == "__main__":
-    ins = Messager()
+    # ins = Messager()
     # 登録
     # ins.run()
 
     # 確認
-    d = ins.read_data()
-    print(d)
+    # d = ins.read_data()
+    # print(d)
+    ins = Comment_flg()
+
         

@@ -1,0 +1,96 @@
+<html lang=“ja”>
+  <head>
+    <meta charset=“UTF-8“ />
+    <title>Form</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script> -->
+    <henko>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    </henko>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="./static/pdf_table.js"></script>
+  </head>
+  <body style="background: #dae5ee;">
+      <h4 class="page-title">KIX: vs last year</h4>
+      <div class="page-category">Page description</div>
+      <form method="POST" action="/comment2">
+				<h3>{{ form.start_month.label }} {{ form.start_month }} 
+				&nbsp;{{ form.submit() }}</h3>
+			</form>
+      <input onclick="save_pdf_test('test.pdf')" type="button" value="PDF作成">
+      <div class="card-title">graph: 1</div>
+      <div>
+        <canvas id="ScatterChart" width="400" height="350">
+        <script>
+          function ScatterChart(){
+            var ctx = document.getElementById("ScatterChart");
+            var myScatterChart = new Chart(ctx, {
+            type: 'scatter', 
+            data: { 
+              datasets: [
+                {
+                  label: 'Label test',
+                  data: [
+                  {% for x,y in dd %}
+                    {x: {{ x }}, y: {{ y }}},
+                    {% endfor %}
+                  ],
+                  backgroundColor: 'RGBA(225,95,150, 1)',
+                }]
+              },
+              options: {
+              responsive: false
+              }
+          });
+        }
+        ScatterChart()
+        </script>
+        </canvas>
+      </div>
+      <div class="card-title">KIX: 2</div>
+      <div>
+        <canvas id="myChart_1" width="400" height="350">
+        <script src="./static/chart_01.js"></script>
+      </canvas>
+      </div>
+
+      <div class="card-title">KIX: 3</div>
+      <div>
+        <canvas id="myChart_2" width="400" height="350">
+        <script src="./static/chart_02.js"></script>
+        </canvas>
+      </div>
+      <textarea name="comment" rows="5" cols="60" id="btn_001" style="text-align:left;;margin-left:auto;">comment_1</textarea>
+
+      <div class="card-title">KIX: 4</div>
+      <div>
+        <canvas id="myChart_3" width="400" height="350">
+          <script src="./static/chart_03.js"></script>
+        </canvas>
+      </div>
+      <div class="card-title">KIX: 5</div>
+      <div>
+        <canvas id="myChart_4" width="400" height="350">
+          <script src="./static/chart_04.js"></script>
+        </canvas>
+      </div>
+      <div class="card-body">
+        <table class="table table-hover" id="MonthlyTable_107">
+           <thead> <tr> <th scope="col">Area</th> 
+            <th scope="col">Store name</th> <th scope="col">Difference</th> </tr> </thead> <tbody> <tr>
+               <td>KIX T1 North Wing Airside INT 2F</td> <td>SKY SPOT INT</td> <td>14.5</td> 
+              </tr> <tr> <td>KIX T1 North Wing Airside INT 2F</td> <td>AAS HOBBY SHOP</td> <td>17.7</td> 
+              </tr> <tr> <td>KIX T1 South Wing Airside DOM 2F</td> <td>Kansai Tabi Nikki T1 DOM</td> <td>-14.5</td> 
+              </tr> <tr> <td>KIX T1 Main Airside INT 3F</td> <td>YOROZU</td> <td>74.3</td> 
+              </tr> <tr> <td>KIX T1 Main Airside INT 3F</td> <td>MIYABI</td> <td>376.5</td>
+              </tr> <tr> <td>KIX T1 Main Airside INT 3F</td> <td>NAGOMI</td> <td>-161.8</td> 
+              </tr> <tr> <td>KIX T1 Main Airside INT 3F</td> <td>ISHIYA</td> <td>23.4</td> 
+              </tr> <tr> <td>KIX T1 Main Airside INT 3F</td> <td>Cocokarafine(KDF Central)</td> <td>58.7</td>
+               </tr> <tr> <td>KIX T1 Main Airside INT 3F</td> <td>BLANCS DE BLANCS_Lunch BOX</td> <td>13.0</td>
+               </tr> <tr> <td>KIX T2 Airside INT 1F</td> <td>Applause T2 INT</td> <td>109.2</td> 
+              </tr> <tr> <td>KIX T2 Landside 1F</td> <td>Applause T2 lobby</td> <td>14.7</td> </tr> </tbody> </table>
+          
+      </div>
+    <textarea name="comment" rows="5" cols="60" id="btn_002" style="text-align:left;;margin-left:auto;">comment_2</textarea>
+  </body>
+</html>

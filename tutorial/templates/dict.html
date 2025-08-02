@@ -12,9 +12,14 @@
     <div class="container">
       <div class="header">
         <h3 class="text-muted">Sample Page</h3>
-        {% if message %}
-          <p>name: {{message.name}}</p>
-          <p>univ: {{message.univ}}</p>
+        {% if b %}
+          <p>name: {{b.name}}</p>
+          <p>age: {{b.age}}</p>
+        {% endif %}
+        {% if a %}
+        {% for l in a %}
+        {{l}}
+        {% endfor %}
         {% endif %}
       </div>
     </div>

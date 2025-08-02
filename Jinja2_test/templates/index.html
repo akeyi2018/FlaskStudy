@@ -1,0 +1,59 @@
+<html lang=“ja”>
+  <head>
+    <meta charset=“UTF-8“ />
+    <title>Form</title>
+    <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://unpkg.com/multiple-select@1.5.2/dist/multiple-select.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/multiple-select@1.5.2/dist/multiple-select.min.css">
+    <link rel="stylesheet" href="/static/table.css">
+  </head>
+  <body style="background: #dae5ee;">
+      <h4 class="page-title">Jinja2 test demo</h4>
+      <hr>
+      <div class="page-category">1. 変数</div>
+      <div>user name: {{ user_name }}</div>
+      <hr>
+      <div class="page-category">2. 辞書型変数</div>
+      <div>
+        {% for key, value in dict_data.items() %}
+        {{key}} : {{value}}<br>
+        {% endfor %}
+      </div>
+      <hr>
+      <div class="page-category">3. 1次元リスト</div>
+      <div>
+        {% for value in li_01 %}
+        {{value}}
+        {% endfor %}
+      </div>
+      <hr>
+      <div class="page-category">4. 2次元リスト</div>
+      <div>
+        {% for l1 in li_02 %}
+        {% for v in l1 %}
+        {{ v }}
+        {% endfor %}<br>
+        {% endfor %}
+      </div>
+      <hr>
+      {% if flag == 1 %}
+      <form method="POST" action="/show_data">
+        <h3>{{form.stores}}</h3>
+        <h3>{{form.category}}</h3>
+				&nbsp;{{ form.submit() }}</h3>
+			</form>
+      {% endif %}
+      <hr>
+      <script>
+        $(function () {
+            $('select').multipleSelect({
+              width: 400,
+              selectedList: 100,
+              classes:'.multi__etc',
+            });
+        });
+        </script>
+  </body>
+</html>

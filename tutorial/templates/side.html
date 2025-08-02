@@ -1,0 +1,45 @@
+<html lang=“ja”>
+  <head>
+    <meta charset=“UTF-8“ />
+    <title>Form</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
+    <script src="./static/comment.js"></script>
+  </head>
+  <body>
+    <div class="user">
+      <div class="info">
+        <span>
+          {{ current_user.username }}
+          <span class="user-level">
+            {{ current_user.email }}
+          </span>
+          <span class="caret"></span>
+        </span>
+      </div>
+    </div>
+    <a href="/comment/{{current_user.username}}">
+      <span class="sub-item">KIX</span>
+    </a>
+    <hr>
+    <a href="/view/select_multi">
+      <span class="sub-item">複数選択</span>
+    </a>
+    <hr>
+    <a href="/confirm_test">
+      <span class="sub-item">Confirm</span>
+    </a>
+    <hr>
+    <a href="/view/cm2">
+      <span class="sub-item">show graph</span>
+    </a>
+    <hr>
+    <a href="/view/multi">
+      <span class="sub-item">multi graph</span>
+    </a>
+    <hr>
+    <a href="/test">
+      <span class="sub-item">test page</span>
+    </a>
+    <br>
+  </body>
+</html>

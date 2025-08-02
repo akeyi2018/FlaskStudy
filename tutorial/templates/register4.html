@@ -1,0 +1,98 @@
+<html lang=“ja”>
+  <head>
+    <meta charset=“UTF-8“ />
+    <title>Form</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.debug.js"></script>
+    <script src="./static/pdf_table.js"></script>
+  </head>
+  <body style="background: #dae5ee;">
+      <h4 class="page-title">KIX: vs last year</h4>
+      <div class="page-category">Page description</div>
+      <form method="POST" action="/comment/{{user_name}}">
+				<h3>{{ form.start_month.label }} {{ form.start_month }}
+        <h3>{{ form.multi.label}}{{form.multi}}</h3> 
+				&nbsp;{{ form.submit() }}</h3>
+			</form>
+      <input onclick="save_pdf_test('test.pdf')" type="button" value="PDF作成">
+      <div class="card-title">graph: 1</div>
+      <div>
+        <canvas id="ScatterChart" width="400" height="350">
+        <script>
+          function ScatterChart(){
+            var ctx = document.getElementById("ScatterChart");
+            var myScatterChart = new Chart(ctx, {
+            type: 'scatter', 
+            data: { 
+              datasets: [
+                {
+                  label: 'Label test',
+                  data: [
+                  {% for x,y in dd %}
+                    {x: {{ x }}, y: {{ y }}},
+                    {% endfor %}
+                  ],
+                  backgroundColor: 'RGBA(225,95,150, 1)',
+                }]
+              },
+              options: {
+              responsive: false
+              }
+          });
+        }
+        ScatterChart()
+        </script>
+        </canvas>
+      </div>
+      <div class="card-title">KIX: 2</div>
+      <div>
+        <canvas id="myChart_1" width="400" height="350">
+        <script src="./static/chart_01.js"></script>
+      </canvas>
+      </div>
+
+      <div class="card-title">KIX: 3</div>
+      <div>
+        <canvas id="myChart_2" width="400" height="350">
+        <script src="./static/chart_02.js"></script>
+        </canvas>
+      </div>
+      <textarea name="comment" rows="5" cols="60" id="btn_001" style="text-align:left;;margin-left:auto;">comment_1</textarea>
+
+      <div class="card-title">KIX: 4</div>
+      <div>
+        <canvas id="myChart_3" width="400" height="350">
+          <script src="./static/chart_03.js"></script>
+        </canvas>
+      </div>
+      <div class="card-title">KIX: 5</div>
+      <div>
+        <canvas id="myChart_4" width="400" height="350">
+          <script src="./static/chart_04.js"></script>
+        </canvas>
+      </div>
+      <div class="card-body">
+        <table class="table table-hover" border="1" id="t1">
+          <thead>
+            <tr>
+              <th scope="col">no</th>
+              <th scope="col">First</th>
+              <th scope="col">Last</th>
+              <th scope="col">Handle</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for x,y,z,k in table_dd %}
+            <tr>
+              <td>{{ x }}</td>
+              <td>{{ y }}</td>
+              <td>{{ z }}</td>
+              <td>{{ k }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    <textarea name="comment" rows="5" cols="60" id="btn_002" style="text-align:left;;margin-left:auto;">comment_2</textarea>
+  </body>
+</html>
