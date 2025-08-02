@@ -1,28 +1,22 @@
 from gpiozero import RGBLED
 from time import sleep
+import random
 
-led = RGBLED(red=16, green=20, blue=21)
+# GPIOピンの設定（red=21, green=20, blue=16）
+led = RGBLED(red=21, green=20, blue=16)
 
-led.red = 1  # full red
-sleep(1)
-led.red = 0.5  # half red
-sleep(1)
+try:
+    while True:
+        # RGB各値を0.0〜1.0の範囲でランダム生成
+        r = random.uniform(0, 1)
+        g = random.uniform(0, 1)
+        b = random.uniform(0, 1)
 
-led.color = (0, 1, 0)  # full green
-sleep(1)
-led.color = (1, 0, 1)  # magenta
-sleep(1)
-led.color = (1, 1, 0)  # yellow
-sleep(1)
-led.color = (0, 1, 1)  # cyan
-sleep(1)
-led.color = (1, 1, 1)  # white
-sleep(1)
-
-led.color = (0, 0, 0)  # off
-sleep(1)
-
-# slowly increase intensity of blue
-for n in range(100):
-    led.blue = n/100
-    sleep(0.1)
+        # print(f"R: {r:.2f}, G: {g:.2f}, B: {b:.2f}")
+        led.color = (r, g, b)  # LEDの色を変更
+        sleep(0.2)  # 1秒ごとに色を変更
+        led.off()
+        sleep(0.1)
+except KeyboardInterrupt:
+    led.off()
+    print("LEDをオフにして終了しました")
