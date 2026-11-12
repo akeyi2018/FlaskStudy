@@ -139,7 +139,7 @@ parso==0.8.3
 passlib==1.7.4
 phonenumbers-jp==0.0.2
 pickleshare==0.7.5
-Pillow==9.0.1
+Pillow>=13.0.0
 pip-licenses==3.5.3
 plumbum==1.8.1
 ply==3.11
